@@ -1,0 +1,81 @@
+# Basic
+home:
+    url: /
+    controller: home
+    action: home
+    view: home
+
+# perfil de evento, sin conectarse
+event:
+    url: /event/([a-zA-Z0-9-_]+)?[/]?([a-zA-Z0-9-_]+)?[/]?
+    controller: event
+    action: event
+    view: profile/event
+
+
+# perfil de usuario, no conectado
+user:
+    url: /user/([a-zA-Z0-9-_]+)?[/]?([a-zA-Z0-9-_]+)?[/]?
+    controller: users
+    action: user
+    view: profile/user
+    
+# url no existente o encontrada
+404:
+    url: /404/
+    controller: e404
+    action: index
+    view: e404
+
+# mantenimiento!
+maintenance:
+    url: /maintenance/
+    controller: home
+    action: maintenance
+    view: maintenance
+
+# ingles/español
+language:
+    url: /language/
+    controller: language
+    action: language
+    view: none
+
+# Auth
+register:
+    url: /register/
+    controller: auth
+    action: register
+    view: register
+
+login:
+    url: /login/
+    controller: auth
+    action: login
+    view: login
+
+logout:
+    url: /logout/
+    controller: auth
+    action: logout
+    view: none
+
+# Admin
+admin:
+    url: /admin/
+    path: admin
+    controller: dashboard
+    action: home
+
+admin_languages:
+    url: /admin/languages/([a-zA-Z0-9-_]+)?[/]?([a-zA-Z0-9-_]+)?[/]?
+    path: admin
+    controller: dashboard
+    action: languages
+
+admin_users:
+    url: /admin/users/([a-zA-Z0-9-_]+)?[/]?([a-zA-Z0-9-_]+)?[/]?
+    path: admin
+    controller: dashboard
+    action: users
+

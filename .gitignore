@@ -1,0 +1,7 @@
+script_errors.log
+cli/script_errors.log
+files/
+Cache/
+vendor/
+docs/
+composer.lock
