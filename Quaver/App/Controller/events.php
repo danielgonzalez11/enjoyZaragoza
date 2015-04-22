@@ -10,9 +10,6 @@ class events extends Controller
 {   
 	public function eventAction(){//cargar evento
 
-    	global $_user;
-
-
     	$event = new Event;
     	$id = $this->router->getUrlPart(0);
 
@@ -22,6 +19,6 @@ class events extends Controller
     	}else{
     		//Nombre del evento
     	}
-
+        $this->render();
     }
 }

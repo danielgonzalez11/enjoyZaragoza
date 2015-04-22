@@ -15,6 +15,10 @@ class users extends Controller
 
 
     	$user = new User;
+        $usuarios = $user->getList();
+        var_dump($usuarios);
+        exit;
+
     	$id = $this->router->getUrlPart(0);
     	$usuario = $user->getFromId($id);
     	if($usuario->id){

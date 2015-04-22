@@ -9,6 +9,7 @@ namespace Quaver\App\Controller;
 
 use Quaver\Core\Controller;
 use Quaver\Core\Lang;
+use Quaver\App\Model\Event;
 
 /**
  * Home controller (language, maintenance and index)
@@ -22,7 +23,27 @@ class home extends Controller
      */
     public function homeAction()
     {   
-        $this->addTwigVars('siteTitle', "Welcome to Quaver" . ' - ' . BRAND_NAME);
+        
+        $event = new Event;
+        $eventos = $event->getList();
+        $eventsCarousel = array();
+
+        //Calculando eventos para el carousel
+        $CurrencyDate = date('Y-m-d');
+        $NextWeek = strtotime ( '+7 day' , strtotime ( $CurrencyDate ) ) ;
+        $NextWeek = date ( 'Y-m-d' , $NextWeek );
+        
+
+        for ($i=0; $i < count($eventos); $i++) { 
+            $fecha = strtotime($eventos[$i]->dateFinish);
+           if( $fecha >= $CurrencyDate){
+            //EVENTOS DE LA SEMANA
+            echo "tiene que entrar una vez";
+           } 
+        }
+        
+
+        $this->addTwigVars('siteTitle', "Welcome to Enjoyzaragoza" . ' - ' . BRAND_NAME);
         $this->render();
     }
 
