@@ -36,12 +36,16 @@ class home extends Controller
 
         for ($i=0; $i < count($eventos); $i++) { 
             $fecha = strtotime($eventos[$i]->dateFinish);
-           if( $fecha >= $CurrencyDate){
-            //EVENTOS DE LA SEMANA
-            echo "tiene que entrar una vez";
-           } 
+            $fecha = date('Y-m-d',$fecha);
+            $c=0;
+           if( $fecha >= $CurrencyDate && $fecha <= $NextWeek){
+            //Eventos de la semana, almacenarlos para mostrarlos en el carousel.
+            $eventsCarousel[$c]=$eventos[$i];
+            $c++;
         }
         
+    }
+
 
         $this->addTwigVars('siteTitle', "Welcome to Enjoyzaragoza" . ' - ' . BRAND_NAME);
         $this->render();
