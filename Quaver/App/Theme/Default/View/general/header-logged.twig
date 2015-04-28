@@ -1,0 +1,9 @@
+<a class="header-links dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+    {{ _user.name }}
+  <span class="caret"></span>
+</a>
+<ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1">
+  {% if _user.admin %}<li><a href="/admin">Administar</a></li>{% endif %}
+  <li role="presentation"><a role="menuitem" tabindex="-1" href="/settings">Mi perfil</a></li>
+  <li role="presentation"><a role="menuitem" tabindex="-1" href="/logout">Desconectarme</a></li>
+</ul>

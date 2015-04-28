@@ -46,7 +46,7 @@ class home extends Controller
         
     }
 
-
+        $this->addTwigVars('sliderItems', $eventsCarousel);
         $this->addTwigVars('siteTitle', "Welcome to Enjoyzaragoza" . ' - ' . BRAND_NAME);
         $this->render();
     }

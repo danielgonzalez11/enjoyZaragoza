@@ -3,7 +3,7 @@ home:
     url: /
     controller: home
     action: home
-    view: home
+    view: home/home
 
 # perfil de evento, sin conectarse
 event:
@@ -52,7 +52,7 @@ login:
     url: /login/
     controller: auth
     action: login
-    view: login
+    view: user/login
 
 logout:
     url: /logout/

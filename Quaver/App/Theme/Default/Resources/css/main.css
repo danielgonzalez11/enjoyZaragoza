@@ -1,0 +1,147 @@
+/*HEADER*/
+header{
+	height: 110px;
+}
+
+header .container{
+	height: 110px;
+}
+.home-sep {
+  width: 100%;
+  border-bottom: 4px solid #00BF3A; 
+}
+
+.navbar{
+	margin-bottom: 0px;
+	border:none;
+}
+.navbar-brand {
+  float: left;
+  padding: 10px 48px;
+  font-size: 18px;
+  line-height: 20px;
+  height: 110px;
+}
+
+.navbar-default {
+   background-color: #fff;
+   border-color: #fff;
+   color:#fff;
+}
+.navbar-default .navbar-nav>li>a {
+  color: #fff;
+}
+
+.logo{
+	width:180px;
+	height: 90px;
+}
+
+.logo-header{
+	margin-right: 2%;
+}
+
+.btn-header {
+  background-color: #00BF3A;
+  color:#fff;
+  font-size: 16px;
+  font-weight: 900;
+  padding-top: 8px !important;
+  padding-bottom: 5px !important;
+  border-radius: 11px;
+  margin-top: 32px;
+  height: auto;
+  text-transform: uppercase;
+  white-space: normal;
+  width: 138px;
+  margin-left: 30px;
+  text-align: center;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s; 
+}
+.btn-header-cuenta{
+  background-color: #00BF3A;
+  color:#fff;
+  font-size: 16px;
+  font-weight: 900;
+  padding-top: 10px !important;
+  padding-bottom: 5px !important;
+  border-radius: 11px;
+  margin-top: 40px;
+  height: auto;
+  text-transform: uppercase;
+  white-space: normal;
+  width: 138px;
+  margin-left: 30px;
+  text-align: center;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+  .btn-header:hover {
+    opacity: 0.7 !important; 
+}
+
+.btn-green{
+	 background-color: #00BF3A;
+}
+
+
+.navbar-form{
+	padding-top: 8px;
+	padding-bottom: 5px;
+	margin-top: 32px;
+	padding-left: 30px;
+}
+
+.language-selector {
+  position: absolute;
+  top: -8px;
+  right: 0%;
+  border-radius: 11px;
+}
+
+.navbar-collapse.in {
+  overflow-y: visible;
+}
+
+
+/*MEDIA QUERIES HEADER*/
+/* Small devices (tablets, 768px and up) */
+@media (max-width: 768px) { 
+	.btn-header, .btn-header-cuenta{
+	  width: 96%;
+	  margin: 5px auto 0 !important;
+	  font-size: 16px !important;
+	  padding-top: 10px !important;
+	  padding-bottom: 10px !important;
+	}
+
+.language-selector {
+	right: 85%;
+}
+	.navbar-form{
+		margin-top:10px;
+	}
+
+	#btnBuscar{
+		width:60%;
+		float:left;
+	}
+
+	#Buscar{
+		margin-left: 10px;
+  		margin-top: -4px;
+	}
+}
+
+
+/*BODY*/
+
+/*FOOTER*/

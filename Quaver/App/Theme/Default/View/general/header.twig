@@ -1,0 +1,56 @@
+  <header>
+   <div class="container">
+    <div class="row">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand logo-header" href="/"><img src="{{ qv.img }}/logo.jpg" class="img-responsive logo" alt="Enjoy Zaragoza"></a>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li class="header-li"><a href="/add-event/" class="btn btn-header">Crear evento</a></li>
+              <li class="header-li"><a href="/how-it-works/" class="btn btn-header">Como funciona</a></li>
+
+            <form class="navbar-form navbar-left" role="search">
+              <div class="form-group">
+                <input type="text" id="btnBuscar" class="form-control" placeholder="Buscar">
+              </div>
+              <button type="submit" id="Buscar" class="btn btn-default">Buscar</button>
+            </form>
+
+              {% if not _user.logged %}
+                  <li class="header-li"><a class="btn btn-header-cuenta" data-toggle="modal" data-target="#modal-login">Mi cuenta</a></li>
+              {% endif %}
+
+              {% if _user.logged %}
+                  <li class="dropdown-userlogged">{% include 'general/header-logged.twig' %}</li>
+              {% endif %}
+
+            </ul>
+          </div><!-- /.navbar-collapse -->
+
+         <div class="language-selector navbar-right">
+            <button type="button" class="btn btn-green" data-toggle="dropdown" aria-expanded="true" role="button">{{ language.name[:2] }}
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              {% for lang in languages %}
+                  <li><a href="/language/{{ lang.slug }}">{{ lang.name[:2] }}</a></li>
+              {% endfor %}
+            </ul>  
+          </div>
+        </div><!-- /.container-fluid -->
+        <div class="home-sep visible-xs-block"></div>
+      </nav>
+    </div>
+  </div> 
+</header>
+<div class="home-sep"></div>
