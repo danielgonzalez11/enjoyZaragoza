@@ -1,3 +1,8 @@
+.container{
+  max-width: 960px;
+}
+
+
 /*HEADER*/
 header{
 	height: 110px;
@@ -15,9 +20,11 @@ header .container{
 	margin-bottom: 0px;
 	border:none;
 }
+.navbar-nav{
+  height: 110px;
+}
 .navbar-brand {
   float: left;
-  padding: 10px 48px;
   font-size: 18px;
   line-height: 20px;
   height: 110px;
@@ -27,15 +34,16 @@ header .container{
    background-color: #fff;
    border-color: #fff;
    color:#fff;
+   height: 110px;
 }
 .navbar-default .navbar-nav>li>a {
   color: #fff;
 }
 
-.logo{
-	width:180px;
-	height: 90px;
-}
+/*.logo{
+	width:0px;
+	height: 0px;
+}*/
 
 .logo-header{
 	margin-right: 2%;
@@ -46,15 +54,15 @@ header .container{
   color:#fff;
   font-size: 16px;
   font-weight: 900;
-  padding-top: 8px !important;
-  padding-bottom: 5px !important;
+  padding-top: 6px !important;
+  padding-bottom: 4px !important;
   border-radius: 11px;
   margin-top: 32px;
   height: auto;
   text-transform: uppercase;
   white-space: normal;
   width: 138px;
-  margin-left: 30px;
+  margin-right:30px;
   text-align: center;
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
@@ -74,8 +82,6 @@ header .container{
   height: auto;
   text-transform: uppercase;
   white-space: normal;
-  width: 138px;
-  margin-left: 30px;
   text-align: center;
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
@@ -94,10 +100,12 @@ header .container{
 
 
 .navbar-form{
-	padding-top: 8px;
-	padding-bottom: 5px;
-	margin-top: 32px;
-	padding-left: 30px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	margin-top: 43px;
+  margin-left:5px;
+  margin-right: 5px;
+	padding-left: 0px;
 }
 
 .language-selector {
@@ -127,7 +135,7 @@ header .container{
 	right: 85%;
 }
 	.navbar-form{
-		margin-top:10px;
+		margin-top:0px;
 	}
 
 	#btnBuscar{
@@ -136,8 +144,8 @@ header .container{
 	}
 
 	#Buscar{
-		margin-left: 10px;
-  		margin-top: -4px;
+		margin-left: 0px;
+  		margin-top: 0px;
 	}
 }
 
@@ -145,3 +153,35 @@ header .container{
 /*BODY*/
 
 /*FOOTER*/
+footer{
+  border-top: 4px solid #00BF3A;
+  text-align: center;
+}
+
+footer .footer-border{
+  border-left: 2px solid #00BF3A;
+  border-right: 2px solid #00BF3A;
+}
+
+footer .footer-border-left{
+  border-left: 2px solid #00BF3A;
+}
+
+footer .footer-border-right{
+  border-right: 2px solid #00BF3A;
+}
+
+footer .social-icons li{
+    display: inline-block;
+}
+footer .social-icons li a {
+  color:#00BF3A;
+}
+
+.social-icons{
+  text-align: center;
+}
+
+footer li{
+    list-style:none;
+}
