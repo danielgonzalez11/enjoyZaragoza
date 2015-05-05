@@ -1,24 +1,47 @@
+
 <div id="carousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
-    {% for i,item in sliderItems %}
-      <li data-target="#carousel" data-slide-to="{{i}}" class="{% if i == 0 %}active{% endif %}"></li>
-    {% endfor %}
+    {#{% for i,item in sliderItems %}#}
+      <li data-target="#carousel" data-slide-to="0" class="active"></li>
+      <li data-target="#carousel" data-slide-to="1" ></li>
+      <li data-target="#carousel" data-slide-to="2" ></li>
+    {#{% endfor %}#}
   </ol>
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
-    {% for item in sliderItems %}
-      <div class="item {% if item.position == 1 %}active{% endif %}">
-        <img src="/image/1400/500/1/files/slider/{{ item.image }}" alt="{{ item.title }}">
+    {#{% for item in sliderItems %}#}
+      <div class="item active">
+        <img src="http://placehold.it/800x300" alt="probando">
         <div class="carousel-caption">
           <div class="caption-wrap">
-              <h1>{{ item.title }}</h1>
-              {{ item.text | replace({'<a href="': '<a class="btn btn-white" href="'}) | raw }}
+              <h1>Probando slider 1</h1>
+              imagen 1
           </div>
         </div>
       </div>
-    {% endfor %}
+            <div class="item ">
+        <img src="http://placehold.it/800x300" alt="probando">
+        <div class="carousel-caption">
+          <div class="caption-wrap">
+              <h1>Probando slider 2</h1>
+              imagen 2
+          </div>
+        </div>
+      </div>
+      <div class="item">
+        <img src="http://placehold.it/900x300" alt="probando">
+        <div class="carousel-caption">
+          <div class="caption-wrap">
+              <h1>Probando slider 3</h1>
+              imagen 3
+          </div>
+        </div>
+      </div>
+
+
+    {#{% endfor %}#}
 
   </div>
 

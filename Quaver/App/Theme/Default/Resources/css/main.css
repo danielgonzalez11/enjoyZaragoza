@@ -30,6 +30,7 @@ header .container{
   height: 110px;
 }
 
+
 .navbar-default {
    background-color: #fff;
    border-color: #fff;
@@ -54,8 +55,8 @@ header .container{
   color:#fff;
   font-size: 16px;
   font-weight: 900;
-  padding-top: 6px !important;
-  padding-bottom: 4px !important;
+  padding-top: 1px !important;
+  padding-bottom: 1px !important;
   border-radius: 11px;
   margin-top: 32px;
   height: auto;
@@ -152,6 +153,25 @@ header .container{
 
 /*BODY*/
 
+/*CAROUSEL*/
+.carousel-inner { text-align: center; }
+.carousel .item > img { display: inline-block; }
+.carousel-inner>.item>img{
+  min-width: 100%;
+  max-width: 100%;
+  max-height: 300px;
+  min-height: 300px;
+}
+
+/*CAROUSEL MEDIA QUERIES*/
+@media (max-width: 768px) {
+.carousel-inner>.item>img{
+  min-width: 100%;
+  max-width: 100%;
+  max-height: 150px;
+  min-height: 150px;
+}
+} 
 /*FOOTER*/
 footer{
   border-top: 4px solid #00BF3A;
