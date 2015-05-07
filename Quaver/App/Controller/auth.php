@@ -140,14 +140,15 @@ class auth extends Controller
         $goTo = $goTo? $goTo : '/';
 
         //Register action
-        if (isset($_POST['email']) && isset($_POST['password'])
-            && !empty($_POST['email']) && !empty($_POST['password'])) {
+        if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['name'])
+        && !empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['name'])) {
 
             $user = new User;
             $_error = false;
 
             $_email = trim($_POST['email']);
             $_pass = $_POST['password'];
+            $_name = trim($_POST['name']);
 
 
             if (empty($_email) || !filter_var($_email, FILTER_VALIDATE_EMAIL)) {
@@ -167,6 +168,12 @@ class auth extends Controller
                 $this->addTwigVars('message_error', $message_error);
             }
 
+            if (empty($_name)) {
+                $_error = true;
+                $message_error = $_lang->l('error-name');
+                $this->addTwigVars('message_error', $message_error);
+            }            
+
             $this->addTwigVars('error', $_error);
 
 
@@ -176,6 +183,7 @@ class auth extends Controller
                 $user->active = 1;
                 $user->password = $user->hashPassword($_POST['password']);
                 $user->email = $_POST['email'];
+                $user->name = $_POST['name'];
 
                 if (isset($_POST['admin'])) {
                     $user->level = "admin";

@@ -205,3 +205,100 @@ footer .social-icons li a {
 footer li{
     list-style:none;
 }
+
+/*MODAL*/
+
+.modal {
+    font-weight: 900;
+}
+.modal  .modal-title, label, .btn {
+        font-weight: 900;
+    }
+
+
+.modal  h2 {
+        font-weight: 900;
+        color: #432918;
+    }
+ .modal .btn {
+         text-transform: uppercase;
+    }
+
+  .modal .label-no-margin{
+        margin:0px;
+    }
+
+  .modal .label-modal-info{
+        font-size:12px;
+        margin-top:2px;
+        margin-bottom:0px;
+        text-align:justify;
+    }
+
+  .modal .btn-facebook{
+        width: 80%;
+        font-size: 18px;
+        margin-top: 20px;
+    }
+
+  .modal  .checkbox>label{
+        text-align:left;
+    }
+
+
+ .modal-ajax .modal-content {
+        min-height: 200px;
+        position: relative;
+    }
+  .modal-ajax .modal-loading {
+        position:absolute;
+        width: 100%;
+        padding-top: 50px;
+    }
+  .modal-ajax .modal-error {
+        padding-top: 50px;
+    }
+
+/*LOGIN*/
+.register-wrapper{
+  margin-bottom: 1%;
+}
+
+.register-wrapper .btn-facebook{
+  width: 100%;
+}
+
+.register-title{
+    text-align: center;
+    font-weight: 900;
+}
+
+/*botones generales,id,etc*/
+.btn-green{
+  color: white !important;
+  background-color: #00BF3A !important;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.btn-facebook {
+  color: white !important;
+  background-color: #46629E !important;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+#avisoCookies {
+  background: #C0C0C0;
+  color: #000;
+  border: 0;
+  border-radius: 0;
+  border-top: 2px solid #00BF3A;
+  -webkit-box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.6);
+}

@@ -21,11 +21,43 @@
 </div>
 
 {% block footer %}
-{% include 'general/footer.twig' %}    
+{% include 'general/footer.twig' %}
+{% if not _user.logged %}
+    {% include 'user/modal-login.twig' %}
+{% endif %}    
 {% endblock %}
 {# scripts #}
 {% block scripts %}
 {% include 'general/scripts.twig' %}
+{% if not _user.logged %}
+<script>
+//<![CDATA[
+  $('#modal-login')
+    .on('show.bs.modal', function (e) {
+      var modal = $(this);
+      var ref = $(e.relatedTarget).data('ref');
+      modal.find('input[name=ref]').val( ref );
+      modal.find('.btn-facebook').each(function () {
+        var e = $(this);
+        var href = e.attr('href');
+        e.attr('href', href.replace(/([?|&]ref=)[^&]*/i, function (m, $1) {
+          return $1 + (ref? encodeURIComponent(ref) : '');
+        }));
+      });
+      if (!modal.data('validating')) {
+        modal.find('.login-form').validate();
+        modal.find('.register-form').validate();
+      }
+    })
+    .on('hide.bs.modal', function () {
+      $(this).find('input[name=ref]').val('');
+    })
+  ;
+  
+//]]>
+</script>
+{% endif %}
+
 {% endblock %}    
 
   </body>

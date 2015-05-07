@@ -1,63 +1,101 @@
-{% extends 'layout.twig' %}
-{% block title %}Quaver Login{% endblock %}
-{% block head %}
-    <style type="text/css">
-      body {
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background-color: #eee;
-}
 
-.form-signin {
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
-}
-.form-signin .form-signin-heading,
-.form-signin .checkbox {
-  margin-bottom: 10px;
-}
-.form-signin .checkbox {
-  font-weight: normal;
-}
-.form-signin .form-control {
-  position: relative;
-  height: auto;
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-  padding: 10px;
-  font-size: 16px;
-}
-.form-signin .form-control:focus {
-  z-index: 2;
-}
-.form-signin input[type="email"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
+{% extends "general/layout.twig" %}
 
-    </style>
-    {% endblock %}
+{% block body %}
 
-    {% block nav %}
-    {% endblock %}
+{% if loginError or userDisabled %}
+  <div class="container">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="alert alert-danger alert-dismissible" role="alert" style="text-align: center;">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                {{ (loginError? 'error-login' : 'user-disabled') | t }}
+              </div>
+          </div>
+      </div>
+  </div>
+{% endif %}
+
+{% if error %}
+  <div class="container">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="alert alert-danger alert-dismissible" role="alert" style="text-align: center;">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                {{ message_error? message_error : language.l('error') }}
+              </div>
+          </div>
+      </div>
+  </div>
+{% endif %}
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h3 class="register-title">Inicia sesión o registrate</h3>
+      </div>
+    </div>
     
+    <div class="register-wrapper">
+      <div class="row">
+          
+          <div class="col-md-6 col-xs-6">
+            {# <h2>{{ language.l('login') }}</h2> #}
+            <form id="login-form" action="/login/" method="post">
+              <input type="hidden" name="ref" value="{{ ref | e('html_attr') }}">
+              <div class="form-group">
+                <input type="email" class="form-control" id="" name="email" maxlength="255" required placeholder="Tu email">
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" id="" name="password" required placeholder="Tu contraseña">
+              </div>
+              <div class="checkbox">
+              </div>
+              <p><button type="submit" class="btn btn-green">Iniciar</button></p>
+              <p><a href="/recovery" class="fc-orange">¿Olvidaste la contraseña?</a></p>
+            </form>
+            
+            <p>
+              <a href="/{#auth/facebook/?ref={{ ref | url_encode | e('html_attr') }}#}" class="btn btn-facebook">Facebook</a>
+              <br />
+            </p>
 
-    {% block body %}
+          </div>
+          <div class="col-md-6 col-xs-6">
+            <form class="register-form" action="/register/" method="post">
+              <input type="hidden" name="ref" value="{{ ref | e('html_attr') }}">
+              {# <h2>{{ language.l('create-new-account') }}</h2> #}
+              <div class="form-group">
+                <input type="text" class="form-control" id="" name="name" minlength="2" maxlength="60" required placeholder="Tu nombre">
+              </div>
+              <div class="form-group">
+                <input type="email" class="form-control" id="" name="email" maxlength="255" required placeholder="Tu email">
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" id="" name="password" required placeholder="Tu contraseña">
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="check-auth" value="1" required>
+                  <a href="/terms" target="_blank">Acepto los términos de registro.</a> 
+                </label>
+              </div>
+              <button type="submit" class="btn btn-green">Crear cuenta.</button>
+            </form>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+      
+{% endblock %}
 
-    <form class="form-signin" role="form" method="post" action="">
-        <h2 class="form-signin-heading">Quaver Login</h2>
-        <input type="email" name="email" class="form-control" placeholder="Email" required>
-        <input type="password" name="password" class="form-control" placeholder="Password" required>
-
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-      </form>
-    {% endblock %}
-   
+{% block scripts %}
+    {{ parent() }}
+    <script>
+    //<![CDATA[
+      $('#login-form').validate();
+      $('#register-form').validate();
+    //]]>
+    </script>
+{% endblock %}

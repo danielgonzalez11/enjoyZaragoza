@@ -36,8 +36,8 @@ maintenance:
 
 # ingles/español
 language:
-    url: /language/
-    controller: language
+    url: /language/([a-zA-Z0-9-_]+)?[/]?
+    controller: home
     action: language
     view: none
 
@@ -46,7 +46,7 @@ register:
     url: /register/
     controller: auth
     action: register
-    view: register
+
 
 login:
     url: /login/

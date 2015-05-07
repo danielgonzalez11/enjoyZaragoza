@@ -11,26 +11,25 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand logo-header" href="/"><img src="http://placehold.it/100x60" class="img-responsive logo" alt="Enjoy Zaragoza"></a>
+            <a class="navbar-brand logo-header" href="/"><img src="http://lorempixel.com/100/60/" class="img-responsive logo" alt="Enjoy Zaragoza"></a>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-              <li class="header-li"><a href="/add-event/" class="btn btn-header">Crear evento</a></li>
-              <li class="header-li"><a href="/how-it-works/" class="btn btn-header">Como funciona</a></li>
+              <li class="header-li"><a href="/add-event/" class="btn btn-header">{{ ('header-create-event')|t }}</a></li>
+              <li class="header-li"><a href="/how-it-works/" class="btn btn-header">{{ ('how-it-works')|t }}</a></li>
 
             <form class="navbar-form navbar-left" role="search">
               <div class="form-group">
-                <input type="text" id="btnBuscar" class="form-control" placeholder="Buscar">
+                <input type="text" id="btnBuscar" class="form-control" placeholder="{{ ('label-search')|t }}...">
               </div>
-              <button type="submit" id="Buscar" class="btn btn-default">Buscar</button>
+              <button type="submit" id="Buscar" class="btn btn-default">{{ ('label-search')|t }}</button>
             </form>
 
               {% if not _user.logged %}
-                  <li class="header-li"><a class="btn btn-header-cuenta" data-toggle="modal" data-target="#modal-login">Mi cuenta</a></li>
+                  <li class="header-li"><a class="btn btn-header-cuenta" data-toggle="modal" data-target="#modal-login">{{ ('header-my-account')|t }}</a></li>
               {% endif %}
-
               {% if _user.logged %}
                   <li class="dropdown-userlogged">{% include 'general/header-logged.twig' %}</li>
               {% endif %}
