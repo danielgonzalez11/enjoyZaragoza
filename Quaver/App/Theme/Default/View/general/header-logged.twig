@@ -1,9 +1,9 @@
-<a class="btn btn-header-cuenta dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+<a class="btn-header btn btn-brown fix-button-header fix-second-button-header dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
     {{ _user.name }}
   <span class="caret"></span>
 </a>
 <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1">
   {% if _user.admin %}<li><a href="/admin">{{ ('header-logged-admin')|t }}</a></li>{% endif %}
-  <li role="presentation"><a role="menuitem" tabindex="-1" href="/settings">{{ ('header-logged-admin')|t }}</a></li>
+  <li role="presentation"><a role="menuitem" tabindex="-1" href="/settings">{{ ('header-my-account')|t }}</a></li>
   <li role="presentation"><a role="menuitem" tabindex="-1" href="/logout">{{ ('label-log-out')|t }}</a></li>
 </ul>

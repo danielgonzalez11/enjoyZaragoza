@@ -16,16 +16,19 @@
 {% include 'general/header.twig' %}
 {% endblock %} 
 {# / header nav #}
-<div class="body-wrap">
+<div id="body-wrap">
  {% block body %}{% endblock %}
 </div>
 
+{#footer#}
 {% block footer %}
 {% include 'general/footer.twig' %}
 {% if not _user.logged %}
     {% include 'user/modal-login.twig' %}
 {% endif %}    
 {% endblock %}
+{#/footer#}
+
 {# scripts #}
 {% block scripts %}
 {% include 'general/scripts.twig' %}
@@ -57,8 +60,8 @@
 //]]>
 </script>
 {% endif %}
-
 {% endblock %}    
+
 
   </body>
 </html>

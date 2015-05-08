@@ -57,7 +57,7 @@ function mostrarMensajeCookie() {
     e.style.position = "fixed";
     e.style.zIndex = "999";
     e.style.bottom = "0px";
-    e.innerHTML = typeof COOKIES_STRING !== 'undefined'? COOKIES_STRING : 'Esta web utiliza <i>cookies</i> propias y de terceros para ofrecerte una mejor experiencia y servicio. Al navegar o utilizar nuestros servicios, aceptas el uso que hacemos de ellas. <br/><a style="color:#fff;" class="btn btn-green" onclick="aceptarCookies()">Aceptar</a><a class="btn btn-green" style="color:#fff; margin-left:5px;" href="/privacy">Pol&iacute;tica de cookies</a>';
+    e.innerHTML = typeof COOKIES_STRING !== 'undefined'? COOKIES_STRING : 'Esta web utiliza <i>cookies</i> propias y de terceros para ofrecerte una mejor experiencia y servicio. Al navegar o utilizar nuestros servicios, aceptas el uso que hacemos de ellas. <br/><a style="color:#fff;" class="btn btn-orange" onclick="aceptarCookies()">Aceptar</a><a class="btn btn-orange" style="color:#fff; margin-left:5px;" href="/privacy">Pol&iacute;tica de cookies</a>';
     document.body.insertBefore(e, document.body.lastChild);
 
 }

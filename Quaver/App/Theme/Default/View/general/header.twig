@@ -1,7 +1,7 @@
   <header>
    <div class="container">
     <div class="row">
-      <nav class="navbar navbar-default ">
+      <nav class="navbar navbar-default">
         <div class="container-fluid">
           <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header">
@@ -11,24 +11,16 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand logo-header" href="/"><img src="http://lorempixel.com/100/60/" class="img-responsive logo" alt="Enjoy Zaragoza"></a>
+            <a class="navbar-brand" href="/"><img src="http://lorempixel.com/180/60/" class="logo" alt="Enjoy Zaragoza"></a>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-              <li class="header-li"><a href="/add-event/" class="btn btn-header">{{ ('header-create-event')|t }}</a></li>
-              <li class="header-li"><a href="/how-it-works/" class="btn btn-header">{{ ('how-it-works')|t }}</a></li>
-
-            <form class="navbar-form navbar-left" role="search">
-              <div class="form-group">
-                <input type="text" id="btnBuscar" class="form-control" placeholder="{{ ('label-search')|t }}...">
-              </div>
-              <button type="submit" id="Buscar" class="btn btn-default">{{ ('label-search')|t }}</button>
-            </form>
-
+              <li class="header-li"><a href="/add-event/" class="btn-header btn btn-orange fix-button-header">{{ ('header-create-event')|t }}</a></li>
+              <li class="header-li"><a href="/how-it-works/" class="btn-header btn btn-orange fix-button-header">{{ ('how-it-works')|t }}</a></li>
               {% if not _user.logged %}
-                  <li class="header-li"><a class="btn btn-header-cuenta" data-toggle="modal" data-target="#modal-login">{{ ('header-my-account')|t }}</a></li>
+                  <li><a class="header-links" data-toggle="modal" data-target="#modal-login">{{ ('header-my-account')|t }}</a></li>
               {% endif %}
               {% if _user.logged %}
                   <li class="dropdown-userlogged">{% include 'general/header-logged.twig' %}</li>
@@ -37,14 +29,18 @@
             </ul>
           </div><!-- /.navbar-collapse -->
 
-         <div class="language-selector navbar-right">
-            <button type="button" class="btn btn-green" data-toggle="dropdown" aria-expanded="true" role="button">{{ language.name[:2] }}
+          <div class="language-selector navbar-right btn-group">
+            {% for lang in languages %}
+              <a class="btn btn-orange btn-lang" href="/language/{{ lang.slug }}" {% if lang.id == language.id %}disabled{% endif %}>{{ lang.name[:2] }}</a>
+            {% endfor %}
+            {# <button type="button" class="btn btn-orange btn-lang dropdown-toggle" data-toggle="dropdown" aria-expanded="true" role="button">{{ language.name[:2] }}
+              <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
               {% for lang in languages %}
                   <li><a href="/language/{{ lang.slug }}">{{ lang.name[:2] }}</a></li>
               {% endfor %}
-            </ul>  
+            </ul>   #}
           </div>
         </div><!-- /.container-fluid -->
         <div class="home-sep visible-xs-block"></div>
