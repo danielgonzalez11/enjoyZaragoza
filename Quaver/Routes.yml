@@ -5,12 +5,19 @@ home:
     action: home
     view: home/home
 
+
+addEvent:
+    url: /add-event/
+    controller: addEvent
+    action: addEvent
+    view:  events/addEvent
+
 # perfil de evento, sin conectarse
 event:
-    url: /event/
+    url: /event/([a-zA-Z0-9-_]+)?[/]?([a-zA-Z0-9-_]+)?[/]?
     controller: events
     action: event
-    view: profile/event
+    view: events/event
 
 
 # perfil de usuario, no conectado

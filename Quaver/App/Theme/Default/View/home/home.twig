@@ -11,17 +11,17 @@
   <div class="container">
   	<div class="calendar-container">
    		<div id="calendar" class="fc-calendar-container">
-   	</div>
+   	  </div>
    	</div>
   </div>
 
 {% endblock %}
 {% block scripts %}
   {{ parent() }}
-{#<script src="{{ qv.js }}/jquery.calendario.js"></script>#}
-{#<script>
+<script src="{{ qv.js }}/jquery.calendario.js"></script>
+<script>
 	$( '#calendar' ).calendario();
 
-</script>#}
+</script>
 
 {% endblock %}
