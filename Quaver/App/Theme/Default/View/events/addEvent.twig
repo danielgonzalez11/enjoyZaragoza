@@ -1,5 +1,14 @@
 {% extends "general/layout.twig" %}
 
+{% block head %}
+	{{ parent() }}
+<link rel="stylesheet" href="{{qv.css}}/bootstrap-datetimepicker.min.css" />	
+<script type="text/javascript" src="{{ qv.js }}/moment-with-locales.js"></script>	
+<script type="text/javascript" src="{{ qv.js }}/bootstrap-datetimepicker.min.js"></script>
+
+	
+{% endblock %}
+
 {% block body %}
 <div class="container">	
 	<h1>Crear evento</h1>
@@ -14,8 +23,29 @@
 	        {% endfor %}
 			</select>
 			<div class="form-group">
-				<input data-label="Upload" class="form-control" type="file" required>
+				<input data-label="Upload" class="form-control" type="file" accept="image/*" required>
 	        </div>
+			<div class="form-group">
+	            <div class='input-group date' id='datetimepicker'>
+                <input type='text' name="date" class="form-control"/>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+            	</div>
+			</div>
+	        <div class="form-group">
+            		<textarea rows="4" maxlength="255" name="description" class="form-control" placeholder="Escribe la descripción del evento aquí..."></textarea>
+        	</div>
+			<div class="form-group">
+	           	<input type="text" class="form-control"  name="eventPhone" minlength="9" maxlength="9" required placeholder="Tu teléfono de contacto.....">
+	        </div>        	
+			<div class="form-group">
+	           	<input type="text" class="form-control"  name="eventPrice"  maxlength="45" required placeholder="Precio, poner unos radios, gratis o pagando si pagamos saldra este campo">
+	        </div>
+			<div class="form-group">
+	           	<input type="text" class="form-control"  name="eventCapacity" maxlength="11" required placeholder="Aforo máximo...">
+	        </div>
+			<div class="form-group">
+	           	<input type="text" class="form-control"  name="eventDetails" maxlength="300" required placeholder="Detalles a tener en cuenta...como +18, llevar..tal">
+	        </div>	        	                					
 		</form>
 	</div>	
 </div>
@@ -23,12 +53,20 @@
 {% block scripts %}
 	{{ parent() }}
 <script src="{{ qv.js }}/jquery.filepicker.js"></script>
+<script type="text/javascript" src="{{ qv.js }}/bootstrap-datetimepicker.min.js"></script>
 <script>
-$(function() {
-	$("input[type='file']").filepicker({
-		style: 'bootstrap' 
-	});
-});
+	$(function () {
+		$("input[type='file']").filepicker({
+			style: 'bootstrap' 
+		});
+	});	
+</script>
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker').datetimepicker({
+                	language: 'es'
+        });
+    });
 </script>
 {% endblock %}
 
