@@ -13,39 +13,108 @@
 <div class="container">	
 	<h1>Crear evento</h1>
 	<div class="add-event-form">
-		<form action="" method="post">
+		<form action="" method="post" class="form-horizontal">
 			<div class="form-group">
-	           	<input type="text" class="form-control" id="" name="eventName" minlength="2" maxlength="60" required placeholder="Nombre del evento">
+				<label for="eventName" class="col-md-2 control-label">Nombre:</label>
+				<div class="col-md-10">
+	           	<input type="text" class="form-control" id="eventName" name="eventName" minlength="2" maxlength="60" required placeholder="Nombre del evento">
+	           </div>
 	        </div>
-	        <select class="form-control" required>
-	        {% for c in category %}
-	        	<option value="{{ c.id  }}">{{ c.category }}</option>
-	        {% endfor %}
-			</select>
+	        <div class="form-group">
+	        	<label for="category" class="col-md-2 control-label">Categoría:</label>
+				<div class="col-md-10">
+		        <select class="form-control" id="category" required>
+		        {% for c in category %}
+		        	<option value="{{ c.id  }}">{{ c.category }}</option>
+		        {% endfor %}
+				</select>
+				</div>
+			</div>	
 			<div class="form-group">
+				<label for="image" class="col-md-2 control-label">Imagen del evento:</label>
+				<div class="col-md-10">
 				<input data-label="Upload" class="form-control" type="file" accept="image/*" required>
+				</div>
 	        </div>
 			<div class="form-group">
-	            <div class='input-group date' id='datetimepicker'>
-                <input type='text' name="date" class="form-control"/>
-                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-            	</div>
+				<label for="datetimepicker" class="col-md-2 control-label">Fecha y Hora:</label>
+				<div class="col-md-10">				
+		            <div class='input-group date' id='datetimepicker'>
+		            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+	                <input type='text' name="date" class="form-control"/>
+	            	</div>
+	            </div>	
 			</div>
 	        <div class="form-group">
-            		<textarea rows="4" maxlength="255" name="description" class="form-control" placeholder="Escribe la descripción del evento aquí..."></textarea>
+	        	<label for="description" class="col-md-2 control-label">Descripción:</label>
+				<div class="col-md-10">
+            		<textarea rows="4" maxlength="255" id="description" name="description" class="form-control" placeholder="Escribe la descripción del evento aquí..."></textarea>
+            	</div>
         	</div>
 			<div class="form-group">
-	           	<input type="text" class="form-control"  name="eventPhone" minlength="9" maxlength="9" required placeholder="Tu teléfono de contacto.....">
+	        	<label for="eventPhone" class="col-md-2 control-label">Contacto:</label>
+				<div class="col-md-10">				
+	           	<input type="text" class="form-control" id="eventPhone" name="eventPhone" minlength="9" maxlength="9" required placeholder="Tu teléfono de contacto.....">
+	           </div>
 	        </div>        	
 			<div class="form-group">
-	           	<input type="text" class="form-control"  name="eventPrice"  maxlength="45" required placeholder="Precio, poner unos radios, gratis o pagando si pagamos saldra este campo">
+	        	<label for="eventPrice" class="col-md-2 control-label">Precio:</label>
+				<div class="col-md-10">
+					<div class="radio-inline">
+					  <label>
+					    <input type="radio" name="price" id="free" value="free">
+					    Grátis
+					  </label>
+					</div>
+					<div class="radio-inline">
+					  <label>
+					    <input type="radio" name="price" id="cost" value="cost">
+					    Con aportación
+					  </label>
+					</div>
+				</div>					        	
+				<div  id="checkFree">
+					<label for="eventDetails" class="col-md-2 control-label"></label>
+					<div class="col-md-10">
+		           	<input type="text" class="form-control"  name="eventPrice"  maxlength="45" required placeholder="tanto dinero...">
+		           </div>
+	           </div>
 	        </div>
 			<div class="form-group">
-	           	<input type="text" class="form-control"  name="eventCapacity" maxlength="11" required placeholder="Aforo máximo...">
+	        	<label for="eventCapacity" class="col-md-2 control-label">Aforo:</label>
+	        	<div class="col-md-10">
+					<div class="radio-inline">
+					  <label>
+					    <input type="radio" name="capacity" id="limited" value="limited">
+					    Limitado
+					  </label>
+					</div>
+					<div class="radio-inline">
+					  <label>
+					    <input type="radio" name="capacity" id="unlimited" value="unlimited">
+					    Ilimitado
+					  </label>
+					</div>
+				</div>		
+				<div id="checkCapacity">
+					<label for="eventCapacity" class="col-md-2 control-label"></label>	
+					<div class="col-md-10" >			
+		           	<input type="text" class="form-control"  name="eventCapacity" maxlength="11" required placeholder="tanto número de personas...">
+		           </div>
+	       		</div>
 	        </div>
 			<div class="form-group">
+	        	<label for="eventDetails" class="col-md-2 control-label">Detalles:</label>
+				<div class="col-md-10">				
 	           	<input type="text" class="form-control"  name="eventDetails" maxlength="300" required placeholder="Detalles a tener en cuenta...como +18, llevar..tal">
-	        </div>	        	                					
+	           </div>
+	        </div>	    
+			<div class="form-group">
+				<label for="eventDetails" class="col-md-2 control-label"></label>
+				<div class="col-md-10">
+	        	<button type="submit" class="btn btn-orange-brown form-control">Crear</button>
+	        	</div>
+	        </div>	            	                					
 		</form>
 	</div>	
 </div>
@@ -67,6 +136,16 @@
                 	language: 'es'
         });
     });
+</script>
+<script>
+	$('#cost').click(function(){
+		$('#checkFree').toggle();	
+	});
+
+	$('#unlimited').click(function(){
+		$('#checkCapacity').toggle();
+	});	
+
 </script>
 {% endblock %}
 

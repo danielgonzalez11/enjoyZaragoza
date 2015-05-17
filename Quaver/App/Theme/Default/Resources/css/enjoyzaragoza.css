@@ -5197,6 +5197,9 @@ a, span {
     color: #CECEBF;
     background-color: #432918; }
 
+.btn-orange-brown {
+  font-weight: 900; }
+
 .btn-link {
   color: #337ab7;
   font-weight: normal;
@@ -8004,6 +8007,11 @@ div.dataTables_paginate {
 @media (max-width: 767px) {
   div.dataTables_wrapper > div.row > div, div.dataTables_length, div.dataTables_filter, div.dataTables_info, div.dataTables_paginate {
     text-align: left !important; } }
+.add-event-form #checkFree {
+  display: none; }
+.add-event-form #checkCapacity {
+  display: none; }
+
 .modal-open {
   overflow: hidden; }
 
