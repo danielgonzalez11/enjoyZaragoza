@@ -8011,6 +8011,10 @@ div.dataTables_paginate {
   display: none; }
 .add-event-form #checkCapacity {
   display: none; }
+.add-event-form #category {
+  text-transform: uppercase; }
+.add-event-form span {
+  color: inherit; }
 
 .modal-open {
   overflow: hidden; }

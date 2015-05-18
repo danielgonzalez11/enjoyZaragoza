@@ -13,7 +13,7 @@
 <div class="container">	
 	<h1>Crear evento</h1>
 	<div class="add-event-form">
-		<form action="" method="post" class="form-horizontal">
+		<form action method="post" class="form-horizontal">
 			<div class="form-group">
 				<label for="eventName" class="col-md-2 control-label">Nombre:</label>
 				<div class="col-md-10">
@@ -23,7 +23,7 @@
 	        <div class="form-group">
 	        	<label for="category" class="col-md-2 control-label">Categoría:</label>
 				<div class="col-md-10">
-		        <select class="form-control" id="category" required>
+		        <select class="form-control" name="category" id="category" required>
 		        {% for c in category %}
 		        	<option value="{{ c.id  }}">{{ c.category }}</option>
 		        {% endfor %}
@@ -33,7 +33,7 @@
 			<div class="form-group">
 				<label for="image" class="col-md-2 control-label">Imagen del evento:</label>
 				<div class="col-md-10">
-				<input data-label="Upload" class="form-control" type="file" accept="image/*" required>
+				<input data-label="Upload" name="image" class="form-control" type="file" accept="image/*" required>
 				</div>
 	        </div>
 			<div class="form-group">
@@ -71,12 +71,13 @@
 					    <input type="radio" name="price" id="cost" value="cost">
 					    Con aportación
 					  </label>
-					</div>
-				</div>					        	
+					</div>	
+				</div>
+
 				<div  id="checkFree">
 					<label for="eventDetails" class="col-md-2 control-label"></label>
 					<div class="col-md-10">
-		           	<input type="text" class="form-control"  name="eventPrice"  maxlength="45" required placeholder="tanto dinero...">
+		           	<input type="text" class="form-control"  name="eventPrice"  maxlength="45"  placeholder="tanto dinero...">
 		           </div>
 	           </div>
 	        </div>
@@ -99,7 +100,7 @@
 				<div id="checkCapacity">
 					<label for="eventCapacity" class="col-md-2 control-label"></label>	
 					<div class="col-md-10" >			
-		           	<input type="text" class="form-control"  name="eventCapacity" maxlength="11" required placeholder="tanto número de personas...">
+		           	<input type="text" class="form-control"  name="eventCapacity" maxlength="11"  placeholder="tanto número de personas...">
 		           </div>
 	       		</div>
 	        </div>
@@ -112,7 +113,7 @@
 			<div class="form-group">
 				<label for="eventDetails" class="col-md-2 control-label"></label>
 				<div class="col-md-10">
-	        	<button type="submit" class="btn btn-orange-brown form-control">Crear</button>
+	        	<button type="submit" name="crear" class="btn btn-orange-brown form-control">Crear</button>
 	        	</div>
 	        </div>	            	                					
 		</form>
@@ -138,12 +139,17 @@
     });
 </script>
 <script>
-	$('#cost').click(function(){
-		$('#checkFree').toggle();	
+	$('#free').click(function(){
+		$('#checkFree').hide();	
 	});
-
+	$('#cost').click(function(){
+		$('#checkFree').show();	
+	});
+	$('#limited').click(function(){
+		$('#checkCapacity').show();
+	});	
 	$('#unlimited').click(function(){
-		$('#checkCapacity').toggle();
+		$('#checkCapacity').hide();
 	});	
 
 </script>
