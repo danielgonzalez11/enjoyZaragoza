@@ -10,6 +10,11 @@ use Quaver\App\Model\Category;
 class addEvent extends Controller
 {   
 	public function addEventAction(){//cargar evento
+		global $_user;
+		if (!$_user->logged){
+			header("Location: /login");
+		    exit;
+		}
 		$category = new Category;
 		$categories =$category->getListCategory();
 
@@ -26,13 +31,13 @@ class addEvent extends Controller
 
 
 	public function saveForm(){
-		if(!empty($_POST['eventName']) && !empty($_POST['category']) && !empty($_POST['image']) 
+		d("eeee");
+		if(!empty($_POST['eventName']) && !empty($_POST['category']) && !empty($_FILES['image']) 
 	    	&& !empty($_POST['date']) && !empty($_POST['description'])  && !empty($_POST['price'])
 	    	&& !empty($_POST['capacity']) && !empty($_POST['eventDetails'])){
-
+			d("aaaa");
 	    		$name = $_POST['eventName'];
 	    		$category = $_POST['category'];
-	    		$image = $_POST['image'];
 	    		$date = $_POST['date'];
 	    		$description = $_POST['description'];
 	    		$price = $_POST['price'];
@@ -50,9 +55,26 @@ class addEvent extends Controller
 	    			$capacity = $_POST['eventCapacity'];
 	    		}
 	    		//Imagen del evento
-	    		//$type = filetype($image);
-	    		//d($type);
 	    		
+	    		
+	    		$imgPath = FILES_PATH . '/avatar/' . $_user->id; 
+			      switch ($_FILES['image']['type']) {
+			        case('image/jpeg'):
+			        case('image/jpg'):
+			          $imgPath .= '.jpg';
+			          break;
+			        case('image/png'):
+			          $imgPath .= '.png';
+			          break;
+			        case('image/gif'):
+			          $imgPath .= '.gif';
+			          break;
+			        default:
+			          ret(400, $_lang->l('error-mime-type'));
+			          break;
+			      }
+
+			      move_uploaded_file($_FILES['image']['tmp_name'], $imgPath);
 	    	}
 	}    
 }
