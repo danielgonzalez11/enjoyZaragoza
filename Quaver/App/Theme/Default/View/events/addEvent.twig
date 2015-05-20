@@ -10,10 +10,19 @@
 {% endblock %}
 
 {% block body %}
+<div class="container tpvAlert" {% if error %}style="display: block;"{% else %}style="display: none;"{% endif %}>
+        <div class="row">
+            <div class="alert alert-danger alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <strong>¡Atención!</strong> Ocurrió un error al crear el evento(Solo imagenes).
+            </div>
+      </div>
+</div>
+
 <div class="container">	
 	<h1>Crear evento</h1>
 	<div class="add-event-form">
-		<form action method="post" class="form-horizontal" enctype="multipart/form-data">
+		<form action method="post" id="createEvent"class="form-horizontal" enctype="multipart/form-data">
 			<div class="form-group">
 				<label for="eventName" class="col-md-2 control-label">Nombre:</label>
 				<div class="col-md-10">
@@ -33,7 +42,7 @@
 			<div class="form-group">
 				<label for="image" class="col-md-2 control-label">Imagen del evento:</label>
 				<div class="col-md-10">
-				<input data-label="Upload" name="image" class="form-control" type="file" accept="image/*" required>
+				<input data-label="Upload" name="image" id="image" class="form-control" type="file" accept="image/*" required>
 				</div>
 	        </div>
 			<div class="form-group">
@@ -48,7 +57,7 @@
 	        <div class="form-group">
 	        	<label for="description" class="col-md-2 control-label">Descripción:</label>
 				<div class="col-md-10">
-            		<textarea rows="4" maxlength="255" id="description" name="description" class="form-control" placeholder="Escribe la descripción del evento aquí..."></textarea>
+            		<textarea rows="4" maxlength="255" id="description" name="description" class="form-control" required placeholder="Escribe la descripción del evento aquí..."></textarea>
             	</div>
         	</div>
 			<div class="form-group">
@@ -62,13 +71,13 @@
 				<div class="col-md-10">
 					<div class="radio-inline">
 					  <label>
-					    <input type="radio" name="price" id="free" value="free">
+					    <input type="radio" required name="price" id="free" value="free">
 					    Grátis
 					  </label>
 					</div>
 					<div class="radio-inline">
 					  <label>
-					    <input type="radio" name="price" id="cost" value="cost">
+					    <input type="radio" required name="price" id="cost" value="cost">
 					    Con aportación
 					  </label>
 					</div>	
@@ -86,13 +95,13 @@
 	        	<div class="col-md-10">
 					<div class="radio-inline">
 					  <label>
-					    <input type="radio" name="capacity" id="limited" value="limited">
+					    <input type="radio" required name="capacity" id="limited" value="limited">
 					    Limitado
 					  </label>
 					</div>
 					<div class="radio-inline">
 					  <label>
-					    <input type="radio" name="capacity" id="unlimited" value="unlimited">
+					    <input type="radio" required name="capacity" id="unlimited" value="unlimited">
 					    Ilimitado
 					  </label>
 					</div>
@@ -147,11 +156,75 @@
 	});
 	$('#limited').click(function(){
 		$('#checkCapacity').show();
+
 	});	
 	$('#unlimited').click(function(){
 		$('#checkCapacity').hide();
 	});	
 
+</script>
+<script>
+$('#createEvent').validate({
+	rules: {
+		eventName: {
+				required : true
+		},
+		category: {
+				required : true
+		},
+		image: {
+				required : true,
+				rule: function () {
+					var input = document.getElementById('image');
+					var files = input.files;
+					var file;
+					if(files.length > 0){
+						file = files.item(0);
+						switch (file.type) {
+				        case('image/jpeg'):
+				        	return true;
+				        case('image/jpg'):
+				          return true;
+				        case('image/png'):
+				          return true;
+				        case('image/gif'):
+				          return true;
+				        default:
+				          return false;
+				      }
+					}
+				}
+		},
+		date: {
+				required : true
+		},
+		description : {
+				required : true,
+				maxlength : 300
+		},
+		eventPhone: {
+				required : true,
+				digits	: true,
+				minlength : 9
+		},
+		price : {
+				required : true
+		},
+		eventPrice : {
+				required : true
+		},
+		capacity : {
+				required : true
+		},
+		eventCapacity : {
+				required : true
+		},
+		eventDetails : {
+				required : true
+		}
+
+	}
+});
 </script>
 {% endblock %}
 

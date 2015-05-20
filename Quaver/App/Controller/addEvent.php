@@ -19,7 +19,7 @@ class addEvent extends Controller
 		$categories =$category->getListCategory();
 
 		if(isset($_POST['crear'])){
-			$this->saveForm();
+			$this->saveForm($_user);
 		}
 
 
@@ -30,12 +30,11 @@ class addEvent extends Controller
     }
 
 
-	public function saveForm(){
-		d("eeee");
+	public function saveForm($_user){
+		$user = $_user;
 		if(!empty($_POST['eventName']) && !empty($_POST['category']) && !empty($_FILES['image']) 
 	    	&& !empty($_POST['date']) && !empty($_POST['description'])  && !empty($_POST['price'])
 	    	&& !empty($_POST['capacity']) && !empty($_POST['eventDetails'])){
-			d("aaaa");
 	    		$name = $_POST['eventName'];
 	    		$category = $_POST['category'];
 	    		$date = $_POST['date'];
@@ -55,9 +54,9 @@ class addEvent extends Controller
 	    			$capacity = $_POST['eventCapacity'];
 	    		}
 	    		//Imagen del evento
+	    		$error = false;
 	    		
-	    		
-	    		$imgPath = FILES_PATH . '/avatar/' . $_user->id; 
+	    		$imgPath = FILES_PATH . '/avatar/' . $user->id; 
 			      switch ($_FILES['image']['type']) {
 			        case('image/jpeg'):
 			        case('image/jpg'):
@@ -70,11 +69,16 @@ class addEvent extends Controller
 			          $imgPath .= '.gif';
 			          break;
 			        default:
-			          ret(400, $_lang->l('error-mime-type'));
+			          $error = true;
 			          break;
 			      }
+			      if(!$error){
+			      	move_uploaded_file($_FILES['image']['tmp_name'], $imgPath);	
+			      }
 
-			      move_uploaded_file($_FILES['image']['tmp_name'], $imgPath);
+			      	$this->addTwigVars('error', $error);
+			      
+			      
 	    	}
 	}    
 }
