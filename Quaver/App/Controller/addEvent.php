@@ -32,6 +32,7 @@ class addEvent extends Controller
 
 	public function saveForm($_user){
 		$user = $_user;
+
 		if(!empty($_POST['eventName']) && !empty($_POST['category']) && !empty($_FILES['image']) 
 	    	&& !empty($_POST['date']) && !empty($_POST['description'])  && !empty($_POST['price'])
 	    	&& !empty($_POST['capacity']) && !empty($_POST['eventDetails'])){
@@ -75,8 +76,19 @@ class addEvent extends Controller
 			      if(!$error){
 			      	move_uploaded_file($_FILES['image']['tmp_name'], $imgPath);	
 			      }
+			    $CurrencyDate = date('Y/m/d');
+			    $dateFinish = new \DateTime($date);
+			    $events = new Event();
+			    $events->id_creator_user = $user->id;
+			    $events->name = $name;
+			    $events->dateCreate = $CurrencyDate;
+			    $events->dateFinish = $dateFinish;
+			    $events->time = $time;
+			    $events->status = 'accepted';
+			    $events->category = $category;
+			    $events->save();
 
-			      	$this->addTwigVars('error', $error);
+			    $this->addTwigVars('error', $error);
 			      
 			      
 	    	}
