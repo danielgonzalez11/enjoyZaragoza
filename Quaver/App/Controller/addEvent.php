@@ -6,6 +6,8 @@ use Quaver\Core\Controller;
 use Quaver\Core\Lang;
 use Quaver\App\Model\Event;
 use Quaver\App\Model\Category;
+use Quaver\App\Model\EventInfo;
+use Quaver\App\Model\EventFile;
 
 class addEvent extends Controller
 {   
@@ -20,6 +22,7 @@ class addEvent extends Controller
 
 		if(isset($_POST['crear'])){
 			$this->saveForm($_user);
+			$this->addTwigVars('display', true);
 		}
 
 
@@ -35,7 +38,8 @@ class addEvent extends Controller
 
 		if(!empty($_POST['eventName']) && !empty($_POST['category']) && !empty($_FILES['image']) 
 	    	&& !empty($_POST['date']) && !empty($_POST['description'])  && !empty($_POST['price'])
-	    	&& !empty($_POST['capacity']) && !empty($_POST['eventDetails'])){
+	    	&& !empty($_POST['capacity']) && !empty($_POST['eventDetails']) && !empty($_POST['eventPhone'])){
+
 	    		$name = $_POST['eventName'];
 	    		$category = $_POST['category'];
 	    		$date = $_POST['date'];
@@ -43,9 +47,9 @@ class addEvent extends Controller
 	    		$price = $_POST['price'];
 	    		$capacity = $_POST['capacity'];
 	    		$details = $_POST['eventDetails'];
-	    		//fechas 
-	    		$yyyymmdd = substr($date,0,10);
-	    		$time =substr($date, -5);
+	    		$phone = $_POST['eventPhone'];
+	    		//Horas 
+	    		$time =substr($date, -8);
 	    		//Control de los radios
 	    		if($price == 'cost'){
 	    			$price = $_POST['eventPrice'];
@@ -55,9 +59,35 @@ class addEvent extends Controller
 	    			$capacity = $_POST['eventCapacity'];
 	    		}
 	    		//Imagen del evento
+			    $CurrencyDate = date('Y/m/d H:i:s');
+			    $dateFinish = date('Y-m-d H:i:s', strtotime($date));
+
+			    //Events
+			    $events = new Event();
+			    $events->id_creator_user = $user->id;
+			    $events->name = $name;
+			    $events->dateCreate = $CurrencyDate;
+			    $events->dateFinish = $dateFinish;
+			    $events->time = $time;
+			    $events->status = 'accepted';
+			    $events->category = $category;
+			    $events->save();
+
+			    //Events info
+			    $eventsInfo = new EventInfo();
+			    $eventsInfo->id_event = $events->id;
+			    $eventsInfo->description = $description;
+			    $eventsInfo->phone = $phone;
+			    $eventsInfo->price = $price;
+			    $eventsInfo->capacity = $capacity;
+			    $eventsInfo->details = $details;
+			    $eventsInfo->save();
+
+			    //Events file
+
 	    		$error = false;
 	    		
-	    		$imgPath = FILES_PATH . '/avatar/' . $user->id; 
+	    		$imgPath = FILES_PATH . '/events/' . $events->id; 
 			      switch ($_FILES['image']['type']) {
 			        case('image/jpeg'):
 			        case('image/jpg'):
@@ -76,21 +106,15 @@ class addEvent extends Controller
 			      if(!$error){
 			      	move_uploaded_file($_FILES['image']['tmp_name'], $imgPath);	
 			      }
-			    $CurrencyDate = date('Y/m/d');
-			    $dateFinish = new \DateTime($date);
-			    $events = new Event();
-			    $events->id_creator_user = $user->id;
-			    $events->name = $name;
-			    $events->dateCreate = $CurrencyDate;
-			    $events->dateFinish = $dateFinish;
-			    $events->time = $time;
-			    $events->status = 'accepted';
-			    $events->category = $category;
-			    $events->save();
 
-			    $this->addTwigVars('error', $error);
-			      
-			      
+			    $eventsFiles = new EventFile();
+			    $eventsFiles->event = $events->id;
+			    $eventsFiles->source = $imgPath;
+			    $eventsFiles->file = $_FILES['image']['type'];
+			    $eventsFiles->save();
+
+			    //Error
+			    $this->addTwigVars('error', $error);			            
 	    	}
 	}    
 }

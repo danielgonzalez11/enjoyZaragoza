@@ -98,19 +98,7 @@ class auth extends Controller
             $_user->unsetCookie();  
         }
 
-        // REF
-        $goTo = '/';
-        if (!empty($_REQUEST['ref'])) {
-            $goTo = $_REQUEST['ref'];
-        } else if (!empty($_SERVER['HTTP_REFERER'])) {
-            $goTo = $_SERVER['HTTP_REFERER'];
-        }
-
-        //Sanatize the url (CR LF Header location Attacks and external urls)
-        $goTo = parse_url($goTo, PHP_URL_PATH);
-        $goTo = $goTo? $goTo : '/';
-
-        header("Location: $goTo");
+        header("Location: /");
         exit;
     }
 

@@ -10,13 +10,24 @@
 {% endblock %}
 
 {% block body %}
-<div class="container tpvAlert" {% if error %}style="display: block;"{% else %}style="display: none;"{% endif %}>
+{% if display %}	
+<div class="container tpvAlert">
+	{% if error %}
         <div class="row">
             <div class="alert alert-danger alert-dismissible" role="alert">
               <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <strong>¡Atención!</strong> Ocurrió un error al crear el evento.
+              <strong>¡Atención!</strong> Ocurrió un error al crear el evento,revise los campos.
             </div>
       </div>
+	{% else %}
+        <div class="row">
+            <div class="alert alert-success alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <strong>¡Enhorabuea!</strong> El evento se creó satisfactoriamente.
+            </div>
+      </div>	
+	{% endif %}
+{% endif %}		      
 </div>
 
 <div class="container">	
@@ -143,7 +154,7 @@
 <script type="text/javascript">
     $(function () {
         $('#datetimepicker').datetimepicker({
-                	language: 'es'
+                	//language: 'es'
         });
     });
 </script>
