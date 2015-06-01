@@ -8,17 +8,13 @@ use Quaver\App\Model\Event;
 
 class events extends Controller
 {   
+    //adminorcreator
+    //go
 	public function eventAction(){//cargar evento
 
     	$event = new Event;
     	$id = $this->router->getUrlPart(0);
 
-    	if(is_int($id)){
-    		//id del evento
-
-    	}else{
-    		//Nombre del evento
-    	}
         $this->render();
     }
 }

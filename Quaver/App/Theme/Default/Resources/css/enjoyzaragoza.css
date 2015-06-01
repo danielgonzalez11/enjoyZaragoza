@@ -8016,6 +8016,15 @@ div.dataTables_paginate {
 .add-event-form span {
   color: inherit; }
 
+.event-header {
+  padding: 2% 0;
+  background-color: #ECECEC; }
+  .event-header h1 {
+    margin-bottom: 5%; }
+  .event-header p {
+    margin-bottom: 4%;
+    margin-top: 4%; }
+
 .modal-open {
   overflow: hidden; }
 

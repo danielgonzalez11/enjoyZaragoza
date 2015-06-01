@@ -1,0 +1,158 @@
+{% extends "general/layout.twig" %}
+
+
+{% block body %}
+<div class="event-header">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+				{% if adminOrCreator %}
+
+				{% else %}
+				<img src="/files/events/prueba.jpg" class="img-responsive"></img>
+				{% endif %}
+			</div>
+			<div class="col-md-8">
+				{% if adminOrCreator %}
+				<form id="event-form" method="post">
+					<div class="form-group">
+          				<label for="name" class="pull-right">
+          				</label>
+						<div class="col-md-10">
+			           	<input type="text" class="form-control" id="eventName" name="eventName" minlength="2" maxlength="60" placeholder="Nombre del evento">
+			           </div>
+					</div>
+					<div class="form-group">
+						<label for="date" class="pull-left">
+							Fecha y Hora:
+          				</label>
+          				<label for="date" class="pull-right">
+          					Editar
+          				</label>
+			            <div class='input-group date' id='datetimepicker'>
+			            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+		                <input type='text' name="date" class="form-control"/>
+		            	</div>          										
+					</div>
+					<div class="form-group">
+						<label for="category" class="pull-left">
+							Categoría:
+          				</label>
+          				<label for="category" class="pull-right">
+          					Editar
+          				</label>
+				        <select class="form-control" name="category" id="category" >
+				        {% for c in category %}
+				        	<option value="{{ c.category  }}">{{ c.category }}</option>
+				        {% endfor %}
+						</select>          										
+					</div>
+					<div class="form-group">
+						<label for="description" class="pull-left">
+							Descripción:
+          				</label>
+          				<label for="description" class="pull-right">
+          					Editar
+          				</label>
+            			<textarea rows="4" maxlength="255" id="description" name="description" class="form-control" placeholder="Escribe la descripción del evento aquí..."></textarea>          										
+					</div>
+					<div class="form-group">
+						<p><strong>Creado por:</strong> Daniel</p>
+					</div>
+					<div class="form-group">
+						<label for="eventPhone" class="pull-left">
+							Teléfono de contacto:
+          				</label>
+          				<label for="eventPhone" class="pull-right">
+          					Editar
+          				</label>
+						<input type="text" class="form-control" id="eventPhone" name="eventPhone" minlength="9" maxlength="9" placeholder="teléfono de contacto....."> 
+					</div>
+					<div class="form-group">
+						<label for="capacity" class="pull-left">
+							Aforo:
+          				</label>
+          				<label for="capacity" class="pull-right">
+          					Editar
+          				</label>
+						<div class="radio-inline">
+						  <label>
+						    <input type="radio" name="capacity" id="limited" value="limited">
+						    Limitado
+						  </label>
+						</div>
+						<div class="radio-inline">
+						  <label>
+						    <input type="radio" name="capacity" id="unlimited" value="unlimited">
+						    Ilimitado
+						  </label>
+						</div>
+						<div id="checkCapacity">
+							<label for="eventCapacity" class="col-md-2 control-label"></label>	
+							<div class="col-md-10" >			
+				           	<input type="text" class="form-control"  name="eventCapacity" maxlength="11"  placeholder="tanto número de personas...">
+				           </div>
+			       		</div>						          										
+					</div>
+					<div class="form-group">
+						<label for="price" class="pull-left">
+							Precio:
+          				</label>
+          				<label for="price" class="pull-right">
+          					Editar
+          				</label>
+						<div class="radio-inline">
+						  <label>
+						    <input type="radio"  name="price" id="free" value="free">
+						    Grátis
+						  </label>
+						</div>
+						<div class="radio-inline">
+						  <label>
+						    <input type="radio" name="price" id="cost" value="cost">
+						    Con aportación
+						  </label>
+						</div>
+						<div  id="checkFree">
+							<label for="eventDetails" class="col-md-2 control-label"></label>
+							<div class="col-md-10">
+				           	<input type="text" class="form-control"  name="eventPrice"  maxlength="45"  placeholder="tanto dinero...">
+				           </div>
+			           </div>						          										
+					</div>
+					<div class="form-group">
+						<label for="eventDetails" class="pull-left">
+							Detalles:
+          				</label>
+          				<label for="eventDetails" class="pull-right">
+          					Editar
+          				</label>
+						<input type="text" class="form-control"  name="eventDetails" maxlength="300" placeholder="Detalles a tener en cuenta...como +18, llevar..tal"> 
+					</div>
+
+				</form>				
+				{% else %}
+				<h1>Evento de prueba</h1>
+				<p><strong>Fecha y Hora:</strong> 06/01/2015 6:42 PM</p>
+				<p><strong>Categoría:</strong> Música</p>
+				<p><strong>Descripción:</strong> In non euismod sapien. Sed non elementum dui, non condimentum ipsum. Integer eu elementum libero, at cursus libero. Pellentesque pretium purus non nibh rhoncus, ac lacinia mi rutrum. Duis dui nulla, sagittis quis est vel, luctus auctor elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla bibendum justo at augue bibendum varius ut id sem. Ut at sodales erat. In suscipit ut mi in convallis.</p>
+				<p><strong>Creado por:</strong> Daniel</p>
+				<p><strong>Teléfono de contacto:</strong> 612345678</p>
+				<p><strong>Aforo:</strong> 200</p>
+				<p><strong>Precio:</strong> grátis</p>
+				<p><strong>Detalles:</strong> Mayores +18</p>
+				{% endif %}	
+
+				{% if go %}
+				<a href="#" class="btn btn-orange-brown form-control">No Asistiré</a>
+				{% else %}
+				<a href="#" class="btn btn-orange-brown form-control">Asistiré</a>
+				{% endif %}
+			</div>
+		</div>
+	</div>	
+</div>
+
+{% endblock %}
+
+
