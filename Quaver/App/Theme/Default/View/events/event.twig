@@ -1,5 +1,12 @@
 {% extends "general/layout.twig" %}
 
+{% block head %}
+	{{ parent() }}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<link rel="stylesheet" href="{{ qv.css }}/bootstrap-datetimepicker.min.css" />
+<script type="text/javascript" src="{{ qv.js }}/moment-with-locales.js"></script>		
+<script type="text/javascript" src="{{ qv.js }}/bootstrap-datetimepicker.min.js"></script>
+{% endblock %}
 
 {% block body %}
 <div class="event-header">
@@ -40,11 +47,19 @@
 			          <label for="date" class="pull-right"><span class="btn btn-link btn-edit">Editar</span></label>
 			          <div class="form-control-wrap">
 			           <div class='input-group date' id='datetimepicker'>
-			            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-		                <input type='text' id="date" name="date" value="{{ event.dateFinish }}" class="form-control form-control-inline"/>
+				            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+			                <input type='text' id="date" name="date" value="{{ event.dateFinish|date('m/d/Y h:i') }}" class="form-control form-control-inline"/>
 		            	</div>
 			          </div>
 			        </div>
+				
+			        <script>
+						    $(function () {
+						        $('#datetimepicker').datetimepicker({
+						                	//language: 'es'
+						        });
+						    });
+					</script>
 					<div class="form-group">
 			          <label for="category" class="pull-left">
 			            <span class="label-text">Categoría:</span>
@@ -64,7 +79,7 @@
 			          </label>
 			          <label for="description" class="pull-right"><span class="btn btn-link btn-edit">Editar</span></label>
 			          <div class="form-control-wrap">
-            			<textarea rows="4" maxlength="255"  id="description" name="description" class="form-control" placeholder="Escribe la descripción del evento aquí...">{{ eventInfo.description }}</textarea>			          		
+            			<textarea rows="4" maxlength="255"  id="description" name="description" class="form-control form-control-inline" placeholder="Escribe la descripción del evento aquí...">{{ eventInfo.description }}</textarea>			          		
 			          </div>
 			        </div>
 					<div class="form-group">
@@ -90,8 +105,22 @@
 			          </label>
 			          <label for="capacity" class="pull-right"><span class="btn btn-link btn-edit">Editar</span></label>
 			          <div class="form-control-wrap">
-			          	<input type="text" class="form-control form-control-inline" id="capacity" value="{{ eventInfo.capacity }}" name="capacity" placeholder="Aforo del evento.....">	
+			          	<input type="text" class="form-control form-control-inline" id="capacity" value="{{ eventInfo.capacity }}" name="capacity" placeholder="escribe el aforo del evento.....">	
 			          </div>
+			          	<div class="radios-capacity">
+							<div class="radio-inline">
+							  <label>
+							    <input type="radio" name="capacityRadio" id="limited" value="limited">
+							    Limitado
+							  </label>
+							</div>
+							<div class="radio-inline">
+							  <label>
+							    <input type="radio" name="capacityRadio" id="unlimited" value="unlimited">
+							    Ilimitado
+							  </label>
+							</div>
+			       	 	</div>				          
 			        </div>
 					<div class="form-group">
 			          <label for="price" class="pull-left">
@@ -99,7 +128,21 @@
 			          </label>
 			          <label for="price" class="pull-right"><span class="btn btn-link btn-edit">Editar</span></label>
 			          <div class="form-control-wrap">
-			          	<input type="text" class="form-control form-control-inline" id="price" value="{{ eventInfo.price }}" name="price" placeholder="Precio del evento.....">	
+			          	<input type="text" class="form-control form-control-inline" id="price" value="{{ eventInfo.price }}" name="price" placeholder="escribe el precio del evento.....">	
+			          </div>
+			          <div class="radios-price">
+			          	<div class="radio-inline">
+						  <label>
+						    <input type="radio"  name="priceRadio" id="free" value="free">
+						    Grátis
+						  </label>
+						</div>
+						<div class="radio-inline">
+						  <label>
+						    <input type="radio" name="priceRadio" id="cost" value="cost">
+						    Con aportación
+						  </label>
+						</div>
 			          </div>
 			        </div>			        			        			          
 					<div class="form-group">
@@ -111,60 +154,6 @@
 			          	<input type="text" class="form-control form-control-inline" id="eventDetails" value="{{ eventInfo.details }}" name="eventDetails" placeholder="Detalles del evento.....">	
 			          </div>
 			        </div>			        
-					{#
-					<div class="form-group">
-						<label for="capacity" class="pull-left">
-							Aforo:
-          				</label>
-          				<label for="capacity" class="pull-right">
-          					Editar
-          				</label>
-						<div class="radio-inline">
-						  <label>
-						    <input type="radio" name="capacity" id="limited" value="limited">
-						    Limitado
-						  </label>
-						</div>
-						<div class="radio-inline">
-						  <label>
-						    <input type="radio" name="capacity" id="unlimited" value="unlimited">
-						    Ilimitado
-						  </label>
-						</div>
-						<div id="checkCapacity">
-							<label for="eventCapacity" class="col-md-2 control-label"></label>	
-							<div class="col-md-10" >			
-				           	<input type="text" class="form-control"  name="eventCapacity" maxlength="11"  placeholder="tanto número de personas...">
-				           </div>
-			       		</div>						          										
-					</div>
-					<div class="form-group">
-						<label for="price" class="pull-left">
-							Precio:
-          				</label>
-          				<label for="price" class="pull-right">
-          					Editar
-          				</label>
-						<div class="radio-inline">
-						  <label>
-						    <input type="radio"  name="price" id="free" value="free">
-						    Grátis
-						  </label>
-						</div>
-						<div class="radio-inline">
-						  <label>
-						    <input type="radio" name="price" id="cost" value="cost">
-						    Con aportación
-						  </label>
-						</div>
-						<div  id="checkFree">
-							<label for="eventDetails" class="col-md-2 control-label"></label>
-							<div class="col-md-10">
-				           	<input type="text" class="form-control"  name="eventPrice"  maxlength="45"  placeholder="tanto dinero...">
-				           </div>
-			           </div>						          										
-					</div>#}
-
 				</form>				
 				{% else %}
 				<h1>{{ event.name }}</h1>
@@ -190,28 +179,54 @@
 
 {% endblock %}
 {% block scripts %}
-	{{ parent() }}
-<script src="{{ qv.js }}/bootstrap-datetimepicker.min.js"></script>
+<script src="{{ qv.js }}/bootstrap.min.js"></script>
+<script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+{% if language.locale[:2] != 'en' %}
+  <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/localization/messages_{{ language.locale[:2] }}.min.js"></script>
+{% endif %}
+<script src="{{ qv.js }}/cookie-{{ langCurrent[0] }}.js"></script>
 <script>
-    $(function () {
-        $('#datetimepicker').datetimepicker({
-                	//language: 'es'
-        });
-    });
+$( document ).ready(function() {
+	$('.form-control-inline:input').focusin(function(){
+		var $i = $(this);
+		var name = $i.prop("name");
+		switch(name) {
+		    case 'capacity':
+		    	$i.removeClass('form-control-inline').addClass('form-control-editing');	
+		        $('.radios-capacity').show();
+		        break;
+		    case 'price':
+		    	$i.removeClass('form-control-inline').addClass('form-control-editing');
+		        $('.radios-price').show();
+		        break;		        
+		    default:
+		        $i.removeClass('form-control-inline').addClass('form-control-editing');	
+		}
+	});
+
+	$(':input').on( "focusout", function() {
+		var $i = $(this);
+		$i.removeClass('form-control-editing').addClass('form-control-inline');	
+	}); 	  
+});
+
 </script>
 <script>
 	$('#free').click(function(){
-		$('#checkFree').hide();	
+		$('#price').removeClass('form-control-editing').addClass('form-control-inline');	
+		$('#price').val('free');
 	});
 	$('#cost').click(function(){
-		$('#checkFree').show();	
+		$('#price').focusin();
+		$('#price').val('');	
 	});
 	$('#limited').click(function(){
-		$('#checkCapacity').show();
-
+		$('#capacity').focusin();
+		$('#capacity').val('');
 	});	
 	$('#unlimited').click(function(){
-		$('#checkCapacity').hide();
+		$('#capacity').removeClass('form-control-editing').addClass('form-control-inline');	
+		$('#capacity').val('unlimited');
 	});	
 
 </script>

@@ -8055,6 +8055,10 @@ div.dataTables_paginate {
     display: none; }
   .event-header #event-form #checkCapacity {
     display: none; }
+  .event-header #event-form .radios-capacity {
+    display: none; }
+  .event-header #event-form .radios-price {
+    display: none; }
 
 .modal-open {
   overflow: hidden; }
