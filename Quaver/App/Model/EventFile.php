@@ -21,4 +21,21 @@ class EventFile extends Model
     
     protected $table = 'events_files'; // sql table
 
+
+	public function getFromEvent($_event)
+    {
+        $db = new DB;
+        $_event = (int)$_event;
+        $_table = $this->table;
+
+        $item = $db->query("SELECT * FROM $_table WHERE event = '$_event'");
+
+        $result = $item->fetchAll();
+
+        if ($result) {
+            $this->setItem($result[0]);
+        }
+
+        return $this;
+    }
 }

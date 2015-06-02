@@ -14,7 +14,7 @@ addEvent:
 
 # perfil de evento, sin conectarse
 event:
-    url: /event/([a-zA-Z0-9-_]+)?[/]?([a-zA-Z0-9-_]+)?[/]?
+    url: /event/([a-zA-Z0-9-_]+)?[/]
     controller: events
     action: event
     view: events/event
