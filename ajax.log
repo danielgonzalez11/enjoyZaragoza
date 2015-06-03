@@ -1,0 +1,118 @@
+[03-Jun-2015 10:40:15 Europe/Madrid] PHP Notice:  Undefined index: / in /var/www/enjoyZaragoza/Quaver/Core/Router.php on line 273
+[03-Jun-2015 10:40:15 Europe/Madrid] PHP Stack trace:
+[03-Jun-2015 10:40:15 Europe/Madrid] PHP   1. {main}() /var/www/enjoyZaragoza/Ajax/EditEvent.php:0
+[03-Jun-2015 10:40:15 Europe/Madrid] PHP   2. Quaver\Core\Router->dispatch() /var/www/enjoyZaragoza/Ajax/EditEvent.php:14
+[03-Jun-2015 11:07:39 Europe/Madrid] PHP Fatal error:  Uncaught exception 'Quaver\Core\Exception' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'id' in 'where clause'' in /var/www/enjoyZaragoza/Quaver/Core/DB.php:80
+Stack trace:
+#0 /var/www/enjoyZaragoza/Quaver/Core/Model.php(73): Quaver\Core\DB->query('SELECT * FROM e...')
+#1 /var/www/enjoyZaragoza/Ajax/EditEvent.php(47): Quaver\Core\Model->getFromId('35')
+#2 {main}
+  thrown in /var/www/enjoyZaragoza/Quaver/Core/DB.php on line 80
+[03-Jun-2015 11:07:53 Europe/Madrid] PHP Fatal error:  Uncaught exception 'Quaver\Core\Exception' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'id' in 'where clause'' in /var/www/enjoyZaragoza/Quaver/Core/DB.php:80
+Stack trace:
+#0 /var/www/enjoyZaragoza/Quaver/Core/Model.php(73): Quaver\Core\DB->query('SELECT * FROM e...')
+#1 /var/www/enjoyZaragoza/Ajax/EditEvent.php(47): Quaver\Core\Model->getFromId('35')
+#2 {main}
+  thrown in /var/www/enjoyZaragoza/Quaver/Core/DB.php on line 80
+[03-Jun-2015 11:15:20 Europe/Madrid] PHP Fatal error:  Uncaught exception 'Quaver\Core\Exception' with message 'SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '35' for key 'PRIMARY'' in /var/www/enjoyZaragoza/Quaver/Core/DB.php:80
+Stack trace:
+#0 /var/www/enjoyZaragoza/Quaver/Core/Model.php(115): Quaver\Core\DB->query('INSERT INTO eve...', Array)
+#1 /var/www/enjoyZaragoza/Ajax/EditEvent.php(57): Quaver\Core\Model->save()
+#2 {main}
+  thrown in /var/www/enjoyZaragoza/Quaver/Core/DB.php on line 80
+[03-Jun-2015 11:15:40 Europe/Madrid] PHP Fatal error:  Uncaught exception 'Quaver\Core\Exception' with message 'SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '35' for key 'PRIMARY'' in /var/www/enjoyZaragoza/Quaver/Core/DB.php:80
+Stack trace:
+#0 /var/www/enjoyZaragoza/Quaver/Core/Model.php(115): Quaver\Core\DB->query('INSERT INTO eve...', Array)
+#1 /var/www/enjoyZaragoza/Ajax/EditEvent.php(57): Quaver\Core\Model->save()
+#2 {main}
+  thrown in /var/www/enjoyZaragoza/Quaver/Core/DB.php on line 80
+[03-Jun-2015 11:15:52 Europe/Madrid] PHP Fatal error:  Uncaught exception 'Quaver\Core\Exception' with message 'SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '35' for key 'PRIMARY'' in /var/www/enjoyZaragoza/Quaver/Core/DB.php:80
+Stack trace:
+#0 /var/www/enjoyZaragoza/Quaver/Core/Model.php(115): Quaver\Core\DB->query('INSERT INTO eve...', Array)
+#1 /var/www/enjoyZaragoza/Ajax/EditEvent.php(57): Quaver\Core\Model->save()
+#2 {main}
+  thrown in /var/www/enjoyZaragoza/Quaver/Core/DB.php on line 80
+[03-Jun-2015 11:17:36 Europe/Madrid] PHP Fatal error:  Uncaught exception 'Quaver\Core\Exception' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'id' in 'where clause'' in /var/www/enjoyZaragoza/Quaver/Core/DB.php:80
+Stack trace:
+#0 /var/www/enjoyZaragoza/Quaver/Core/Model.php(73): Quaver\Core\DB->query('SELECT * FROM e...')
+#1 /var/www/enjoyZaragoza/Ajax/EditEvent.php(49): Quaver\Core\Model->getFromId(NULL)
+#2 {main}
+  thrown in /var/www/enjoyZaragoza/Quaver/Core/DB.php on line 80
+[03-Jun-2015 11:33:14 Europe/Madrid] PHP Notice:  Undefined property: Quaver\App\Model\EventInfo::$id_event in /var/www/enjoyZaragoza/Quaver/Core/Model.php on line 105
+[03-Jun-2015 11:33:14 Europe/Madrid] PHP Stack trace:
+[03-Jun-2015 11:33:14 Europe/Madrid] PHP   1. {main}() /var/www/enjoyZaragoza/Ajax/EditEvent.php:0
+[03-Jun-2015 11:33:14 Europe/Madrid] PHP   2. Quaver\Core\Model->save() /var/www/enjoyZaragoza/Ajax/EditEvent.php:52
+[03-Jun-2015 11:33:14 Europe/Madrid] PHP Notice:  Undefined property: Quaver\App\Model\EventInfo::$phone in /var/www/enjoyZaragoza/Quaver/Core/Model.php on line 105
+[03-Jun-2015 11:33:14 Europe/Madrid] PHP Stack trace:
+[03-Jun-2015 11:33:14 Europe/Madrid] PHP   1. {main}() /var/www/enjoyZaragoza/Ajax/EditEvent.php:0
+[03-Jun-2015 11:33:14 Europe/Madrid] PHP   2. Quaver\Core\Model->save() /var/www/enjoyZaragoza/Ajax/EditEvent.php:52
+[03-Jun-2015 11:33:14 Europe/Madrid] PHP Notice:  Undefined property: Quaver\App\Model\EventInfo::$price in /var/www/enjoyZaragoza/Quaver/Core/Model.php on line 105
+[03-Jun-2015 11:33:14 Europe/Madrid] PHP Stack trace:
+[03-Jun-2015 11:33:14 Europe/Madrid] PHP   1. {main}() /var/www/enjoyZaragoza/Ajax/EditEvent.php:0
+[03-Jun-2015 11:33:14 Europe/Madrid] PHP   2. Quaver\Core\Model->save() /var/www/enjoyZaragoza/Ajax/EditEvent.php:52
+[03-Jun-2015 11:33:14 Europe/Madrid] PHP Notice:  Undefined property: Quaver\App\Model\EventInfo::$capacity in /var/www/enjoyZaragoza/Quaver/Core/Model.php on line 105
+[03-Jun-2015 11:33:14 Europe/Madrid] PHP Stack trace:
+[03-Jun-2015 11:33:14 Europe/Madrid] PHP   1. {main}() /var/www/enjoyZaragoza/Ajax/EditEvent.php:0
+[03-Jun-2015 11:33:14 Europe/Madrid] PHP   2. Quaver\Core\Model->save() /var/www/enjoyZaragoza/Ajax/EditEvent.php:52
+[03-Jun-2015 11:33:14 Europe/Madrid] PHP Notice:  Undefined property: Quaver\App\Model\EventInfo::$details in /var/www/enjoyZaragoza/Quaver/Core/Model.php on line 105
+[03-Jun-2015 11:33:14 Europe/Madrid] PHP Stack trace:
+[03-Jun-2015 11:33:14 Europe/Madrid] PHP   1. {main}() /var/www/enjoyZaragoza/Ajax/EditEvent.php:0
+[03-Jun-2015 11:33:14 Europe/Madrid] PHP   2. Quaver\Core\Model->save() /var/www/enjoyZaragoza/Ajax/EditEvent.php:52
+[03-Jun-2015 11:33:14 Europe/Madrid] PHP Fatal error:  Uncaught exception 'Quaver\Core\Exception' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'id_event' cannot be null' in /var/www/enjoyZaragoza/Quaver/Core/DB.php:80
+Stack trace:
+#0 /var/www/enjoyZaragoza/Quaver/Core/Model.php(115): Quaver\Core\DB->query('INSERT INTO eve...', Array)
+#1 /var/www/enjoyZaragoza/Ajax/EditEvent.php(52): Quaver\Core\Model->save()
+#2 {main}
+  thrown in /var/www/enjoyZaragoza/Quaver/Core/DB.php on line 80
+[03-Jun-2015 11:33:26 Europe/Madrid] PHP Notice:  Undefined property: Quaver\App\Model\EventInfo::$id_event in /var/www/enjoyZaragoza/Quaver/Core/Model.php on line 105
+[03-Jun-2015 11:33:26 Europe/Madrid] PHP Stack trace:
+[03-Jun-2015 11:33:26 Europe/Madrid] PHP   1. {main}() /var/www/enjoyZaragoza/Ajax/EditEvent.php:0
+[03-Jun-2015 11:33:26 Europe/Madrid] PHP   2. Quaver\Core\Model->save() /var/www/enjoyZaragoza/Ajax/EditEvent.php:52
+[03-Jun-2015 11:33:26 Europe/Madrid] PHP Notice:  Undefined property: Quaver\App\Model\EventInfo::$phone in /var/www/enjoyZaragoza/Quaver/Core/Model.php on line 105
+[03-Jun-2015 11:33:26 Europe/Madrid] PHP Stack trace:
+[03-Jun-2015 11:33:26 Europe/Madrid] PHP   1. {main}() /var/www/enjoyZaragoza/Ajax/EditEvent.php:0
+[03-Jun-2015 11:33:26 Europe/Madrid] PHP   2. Quaver\Core\Model->save() /var/www/enjoyZaragoza/Ajax/EditEvent.php:52
+[03-Jun-2015 11:33:26 Europe/Madrid] PHP Notice:  Undefined property: Quaver\App\Model\EventInfo::$price in /var/www/enjoyZaragoza/Quaver/Core/Model.php on line 105
+[03-Jun-2015 11:33:26 Europe/Madrid] PHP Stack trace:
+[03-Jun-2015 11:33:26 Europe/Madrid] PHP   1. {main}() /var/www/enjoyZaragoza/Ajax/EditEvent.php:0
+[03-Jun-2015 11:33:26 Europe/Madrid] PHP   2. Quaver\Core\Model->save() /var/www/enjoyZaragoza/Ajax/EditEvent.php:52
+[03-Jun-2015 11:33:26 Europe/Madrid] PHP Notice:  Undefined property: Quaver\App\Model\EventInfo::$capacity in /var/www/enjoyZaragoza/Quaver/Core/Model.php on line 105
+[03-Jun-2015 11:33:26 Europe/Madrid] PHP Stack trace:
+[03-Jun-2015 11:33:26 Europe/Madrid] PHP   1. {main}() /var/www/enjoyZaragoza/Ajax/EditEvent.php:0
+[03-Jun-2015 11:33:26 Europe/Madrid] PHP   2. Quaver\Core\Model->save() /var/www/enjoyZaragoza/Ajax/EditEvent.php:52
+[03-Jun-2015 11:33:26 Europe/Madrid] PHP Notice:  Undefined property: Quaver\App\Model\EventInfo::$details in /var/www/enjoyZaragoza/Quaver/Core/Model.php on line 105
+[03-Jun-2015 11:33:26 Europe/Madrid] PHP Stack trace:
+[03-Jun-2015 11:33:26 Europe/Madrid] PHP   1. {main}() /var/www/enjoyZaragoza/Ajax/EditEvent.php:0
+[03-Jun-2015 11:33:26 Europe/Madrid] PHP   2. Quaver\Core\Model->save() /var/www/enjoyZaragoza/Ajax/EditEvent.php:52
+[03-Jun-2015 11:33:26 Europe/Madrid] PHP Fatal error:  Uncaught exception 'Quaver\Core\Exception' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'id_event' cannot be null' in /var/www/enjoyZaragoza/Quaver/Core/DB.php:80
+Stack trace:
+#0 /var/www/enjoyZaragoza/Quaver/Core/Model.php(115): Quaver\Core\DB->query('INSERT INTO eve...', Array)
+#1 /var/www/enjoyZaragoza/Ajax/EditEvent.php(52): Quaver\Core\Model->save()
+#2 {main}
+  thrown in /var/www/enjoyZaragoza/Quaver/Core/DB.php on line 80
+[03-Jun-2015 11:34:30 Europe/Madrid] PHP Notice:  Undefined property: Quaver\App\Model\EventInfo::$id_event in /var/www/enjoyZaragoza/Quaver/Core/Model.php on line 105
+[03-Jun-2015 11:34:30 Europe/Madrid] PHP Stack trace:
+[03-Jun-2015 11:34:30 Europe/Madrid] PHP   1. {main}() /var/www/enjoyZaragoza/Ajax/EditEvent.php:0
+[03-Jun-2015 11:34:30 Europe/Madrid] PHP   2. Quaver\Core\Model->save() /var/www/enjoyZaragoza/Ajax/EditEvent.php:52
+[03-Jun-2015 11:34:30 Europe/Madrid] PHP Notice:  Undefined property: Quaver\App\Model\EventInfo::$phone in /var/www/enjoyZaragoza/Quaver/Core/Model.php on line 105
+[03-Jun-2015 11:34:30 Europe/Madrid] PHP Stack trace:
+[03-Jun-2015 11:34:30 Europe/Madrid] PHP   1. {main}() /var/www/enjoyZaragoza/Ajax/EditEvent.php:0
+[03-Jun-2015 11:34:30 Europe/Madrid] PHP   2. Quaver\Core\Model->save() /var/www/enjoyZaragoza/Ajax/EditEvent.php:52
+[03-Jun-2015 11:34:30 Europe/Madrid] PHP Notice:  Undefined property: Quaver\App\Model\EventInfo::$price in /var/www/enjoyZaragoza/Quaver/Core/Model.php on line 105
+[03-Jun-2015 11:34:30 Europe/Madrid] PHP Stack trace:
+[03-Jun-2015 11:34:30 Europe/Madrid] PHP   1. {main}() /var/www/enjoyZaragoza/Ajax/EditEvent.php:0
+[03-Jun-2015 11:34:30 Europe/Madrid] PHP   2. Quaver\Core\Model->save() /var/www/enjoyZaragoza/Ajax/EditEvent.php:52
+[03-Jun-2015 11:34:30 Europe/Madrid] PHP Notice:  Undefined property: Quaver\App\Model\EventInfo::$capacity in /var/www/enjoyZaragoza/Quaver/Core/Model.php on line 105
+[03-Jun-2015 11:34:30 Europe/Madrid] PHP Stack trace:
+[03-Jun-2015 11:34:30 Europe/Madrid] PHP   1. {main}() /var/www/enjoyZaragoza/Ajax/EditEvent.php:0
+[03-Jun-2015 11:34:30 Europe/Madrid] PHP   2. Quaver\Core\Model->save() /var/www/enjoyZaragoza/Ajax/EditEvent.php:52
+[03-Jun-2015 11:34:30 Europe/Madrid] PHP Notice:  Undefined property: Quaver\App\Model\EventInfo::$details in /var/www/enjoyZaragoza/Quaver/Core/Model.php on line 105
+[03-Jun-2015 11:34:30 Europe/Madrid] PHP Stack trace:
+[03-Jun-2015 11:34:30 Europe/Madrid] PHP   1. {main}() /var/www/enjoyZaragoza/Ajax/EditEvent.php:0
+[03-Jun-2015 11:34:30 Europe/Madrid] PHP   2. Quaver\Core\Model->save() /var/www/enjoyZaragoza/Ajax/EditEvent.php:52
+[03-Jun-2015 11:34:30 Europe/Madrid] PHP Fatal error:  Uncaught exception 'Quaver\Core\Exception' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'id_event' cannot be null' in /var/www/enjoyZaragoza/Quaver/Core/DB.php:80
+Stack trace:
+#0 /var/www/enjoyZaragoza/Quaver/Core/Model.php(115): Quaver\Core\DB->query('INSERT INTO eve...', Array)
+#1 /var/www/enjoyZaragoza/Ajax/EditEvent.php(52): Quaver\Core\Model->save()
+#2 {main}
+  thrown in /var/www/enjoyZaragoza/Quaver/Core/DB.php on line 80

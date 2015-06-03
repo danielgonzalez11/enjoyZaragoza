@@ -13,6 +13,7 @@ use Quaver\Core\Model;
 class EventInfo extends Model
 {
     public $_fields = array(
+      "id",
       "id_event",
       "description",
       "phone",

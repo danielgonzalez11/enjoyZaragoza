@@ -47,9 +47,8 @@ class addEvent extends Controller
 	    		$price = $_POST['price'];
 	    		$capacity = $_POST['capacity'];
 	    		$details = $_POST['eventDetails'];
-	    		$phone = $_POST['eventPhone'];
-	    		//Horas 
-	    		$time =substr($date, -8);
+	    		$phone = $_POST['eventPhone'];	
+
 	    		//Control de los radios
 	    		if($price == 'cost'){
 	    			$price = $_POST['eventPrice'];
@@ -68,7 +67,6 @@ class addEvent extends Controller
 			    $events->name = $name;
 			    $events->dateCreate = $CurrencyDate;
 			    $events->dateFinish = $dateFinish;
-			    $events->time = $time;
 			    $events->status = 'accepted';
 			    $events->category = $category;
 			    $events->save();

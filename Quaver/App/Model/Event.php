@@ -18,7 +18,6 @@ class Event extends Model
       "name",
       "dateCreate",
       "dateFinish",
-      "time",
       "status",
       "category"
     );

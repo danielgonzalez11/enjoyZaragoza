@@ -30,7 +30,7 @@
 			<div class="col-md-8">
 				{% if adminOrCreator %}
 				<form id="event-form" method="post">
-					<input type="hidden" value="{{ event.id }}" name="eventId">
+					<input type="hidden" value="{{ event.id }}" name="eventId" id="eventId">
 					<div class="form-group">
 			          <label for="eventName" class="pull-left">
 			            <span class="label-text">Evento:</span>
@@ -47,7 +47,7 @@
 			          <label for="date" class="pull-right"><span class="btn btn-link btn-edit">Editar</span></label>
 			          <div class="form-control-wrap">
 			           <div class='input-group date' id='datetimepicker'>
-				            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+				            <span class="input-group-addon"><span id="dateIcon" class="glyphicon glyphicon-calendar"></span></span>
 			                <input type='text' id="date" name="date" value="{{ event.dateFinish|date('m/d/Y h:i') }}" class="form-control form-control-inline"/>
 		            	</div>
 			          </div>
@@ -120,7 +120,8 @@
 							    Ilimitado
 							  </label>
 							</div>
-			       	 	</div>				          
+			       	 	</div>
+			       	 	<input type="hidden" value="{{ eventInfo.capacity }}" name="capacityInitialValue" id="capacityInitialValue">				          
 			        </div>
 					<div class="form-group">
 			          <label for="price" class="pull-left">
@@ -144,6 +145,7 @@
 						  </label>
 						</div>
 			          </div>
+			       	 	<input type="hidden" value="{{ eventInfo.price }}" name="priceInitialValue" id="priceInitialValue">				          
 			        </div>			        			        			          
 					<div class="form-group">
 			          <label for="eventDetails" class="pull-left">
@@ -187,8 +189,11 @@
 <script src="{{ qv.js }}/cookie-{{ langCurrent[0] }}.js"></script>
 <script>
 $( document ).ready(function() {
+	var value;
+	var radios = false;
 	$('.form-control-inline:input').focusin(function(){
 		var $i = $(this);
+		value = $i.val();
 		var name = $i.prop("name");
 		switch(name) {
 		    case 'capacity':
@@ -202,32 +207,68 @@ $( document ).ready(function() {
 		    default:
 		        $i.removeClass('form-control-inline').addClass('form-control-editing');	
 		}
-	});
-
-	$(':input').on( "focusout", function() {
+	}).on( "focusout", function() {
 		var $i = $(this);
-		$i.removeClass('form-control-editing').addClass('form-control-inline');	
-	}); 	  
+		$i.removeClass('form-control-editing').addClass('form-control-inline');
+		var initial1 = $('#capacityInitialValue').val();
+		var change1 = $('#capacity').val();
+		if(initial1 != change1 ){
+			radios = true;
+		}
+		var initial2 = $('#priceInitialValue').val();
+		var change2 = $('#price').val();		
+		if(initial2 != change2){
+			radios = true;					
+		}		
+		if($i.val() != value || radios){
+			//AJAX
+			var id = $('#eventId').val();
+			var name = $i.attr('name');
+			var val = $i.val();
+			if(name =='price'){
+				if($('#price').val() == ''){
+					name = initial1;
+				}
+			}
+			if(name =='capacity'){
+				if($('#capacity').val() == ''){
+					name = initial2;
+				}
+			}			
+			postData = {
+	                id: id,
+	                name: name,
+	                value: val
+	        };
+	        $.post('/Ajax/EditEvent.php', postData,function(data) {
+	        	var correct = data;
+	        	alert(correct);
+	        },"json");
+		}
+	});
 });
 
 </script>
 <script>
-	$('#free').click(function(){
-		$('#price').removeClass('form-control-editing').addClass('form-control-inline');	
-		$('#price').val('free');
+	$('#dateIcon').click(function(){
+		$('#date').focus();
 	});
 	$('#cost').click(function(){
-		$('#price').focusin();
-		$('#price').val('');	
+		$('#price').focus();
+		$('#price').attr('value','');
 	});
 	$('#limited').click(function(){
-		$('#capacity').focusin();
-		$('#capacity').val('');
-	});	
+		$('#capacity').focus();
+		$('#capacity').attr('value','');
+	});
+	$('#free').click(function(){	
+		$('#price').attr('value', 'free');
+		$('#price').focus();
+	});
 	$('#unlimited').click(function(){
-		$('#capacity').removeClass('form-control-editing').addClass('form-control-inline');	
-		$('#capacity').val('unlimited');
-	});	
+		$('#capacity').attr('value', 'unlimited');
+		$('#capacity').focus();
+	});			
 
 </script>
 {% endblock %}
