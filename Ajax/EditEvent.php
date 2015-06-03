@@ -9,7 +9,7 @@ use Quaver\App\Model\EventFile;
 
 $router = new Router();
 
-if (!isset($_REQUEST['id'], $_REQUEST['name'], $_REQUEST['value'])) {
+if (!isset($_REQUEST['id'], $_REQUEST['name'])) {
     $router->dispatch('e404');
     exit;
 }
@@ -49,39 +49,81 @@ switch ($name) {
         $eventInfo->description = $value;
         $eventInfo->save();
         $correct = true;
+        echo $correct;
         break;
     case 'eventPhone':
         $eventInfo = new EventInfo();
         $eventInfo->getFromEvent($id);
         $eventInfo->phone = $value;
         $eventInfo->save();
-        $correct = true;    
+        $correct = true;
+        echo $correct;    
         break;
     case 'capacity':
         $eventInfo = new EventInfo();
         $eventInfo->getFromEvent($id);
         $eventInfo->capacity = $value;
         $eventInfo->save();
-        $correct = true;    
+        $correct = true;
+        echo $correct;    
         break;
     case 'price':
         $eventInfo = new EventInfo();
         $eventInfo->getFromEvent($id);
         $eventInfo->price = $value;
         $eventInfo->save();
-        $correct = true;    
+        $correct = true;
+        echo $correct;    
         break;
     case 'eventDetails':
         $eventInfo = new EventInfo();
         $eventInfo->getFromEvent($id);
         $eventInfo->details = $value;
         $eventInfo->save();
-        $correct = true;    
+        $correct = true;
+        echo $correct;    
         break;
     case 'image':
-        $correct = true;
+        if (empty($_FILES['image']) || $_FILES['image']['error'] == UPLOAD_ERR_NO_FILE) {
+            $router->dispatch('e404');
+            exit;
+        }
+        $eventFile = new EventFile();
+        $eventFile->getFromEvent($id);
+        $error = false;
+        $imgPath = FILES_PATH . '/events/' . $id; 
+                  switch ($_FILES['image']['type']) {
+                    case('image/jpeg'):
+                    case('image/jpg'):
+                      $imgPath .= '.jpg';
+                      break;
+                    case('image/png'):
+                      $imgPath .= '.png';
+                      break;
+                    case('image/gif'):
+                      $imgPath .= '.gif';
+                      break;
+                    default:
+                      $error = true;
+                      break;
+                  }
+                  if(!$error){
+                        if(move_uploaded_file($_FILES['image']['tmp_name'], $imgPath)){
+                            $eventsFiles->source = $imgPath;
+                            $eventsFiles->file = $_FILES['image']['type'];
+                            if($eventsFiles->save()){
+                                $correct = true;
+                                echo $correct;
+                            }
+                        }
+
+                    }
+        
         break;
+
+    default:
+        echo $correct;
+
     
 }
 
-echo $correct;

@@ -191,6 +191,7 @@
 $( document ).ready(function() {
 	var value;
 	var radios = false;
+	var imagen = true;
 	$('.form-control-inline:input').focusin(function(){
 		var $i = $(this);
 		value = $i.val();
@@ -205,7 +206,8 @@ $( document ).ready(function() {
 		        $('.radios-price').show();
 		        break;		        
 		    default:
-		        $i.removeClass('form-control-inline').addClass('form-control-editing');	
+		        $i.removeClass('form-control-inline').addClass('form-control-editing');
+
 		}
 	}).on( "focusout", function() {
 		var $i = $(this);
@@ -219,8 +221,9 @@ $( document ).ready(function() {
 		var change2 = $('#price').val();		
 		if(initial2 != change2){
 			radios = true;					
-		}		
-		if($i.val() != value || radios){
+		}
+
+		if($i.val() != value || radios || imagen){
 			//AJAX
 			var id = $('#eventId').val();
 			var name = $i.attr('name');
@@ -234,12 +237,14 @@ $( document ).ready(function() {
 				if($('#capacity').val() == ''){
 					name = initial2;
 				}
-			}			
+			}
+					
 			postData = {
 	                id: id,
 	                name: name,
 	                value: val
 	        };
+
 	        $.post('/Ajax/EditEvent.php', postData,function(data) {
 	        	var correct = data;
 	        	alert(correct);
