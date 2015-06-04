@@ -168,12 +168,15 @@
 				<p><strong>Precio:</strong> {{ eventInfo.price }}</p>
 				<p><strong>Detalles:</strong> {{ eventInfo.details }}</p>
 				{% endif %}	
-
-				{% if go %}
-				<a href="#" class="btn btn-orange-brown form-control">No Asistiré</a>
+				{% if _user.logged %}
+					{% if go %}
+					<a href="#" id="follow" data-status="1" class="btn btn-orange-brown form-control">No Asistiré</a>
+					{% else %}
+					<a href="#" id="follow" data-status="0" class="btn btn-orange-brown form-control">Asistiré</a>
+					{% endif %}
 				{% else %}
-				<a href="#" class="btn btn-orange-brown form-control">Asistiré</a>
-				{% endif %}
+					<a data-toggle="modal" data-target="#modal-login" class="btn btn-orange-brown form-control">Asistiré</a>
+				{% endif %}	
 			</div>
 		</div>
 	</div>	
@@ -195,7 +198,6 @@ $( document ).ready(function() {
 	$(':input.form-control-inline').focusin(function(){
 		var $i = $(this);
 		value = $i.val();
-		alert("entra¿?");
 		var name = $i.prop("name");
 		switch(name) {
 		    case 'capacity':
@@ -248,7 +250,6 @@ $( document ).ready(function() {
 
 	        $.post('/Ajax/EditEvent.php', postData,function(data) {
 	        	var correct = data;
-	        	alert(correct);
 	        },"json");
 		}
 	});
@@ -273,8 +274,11 @@ $(':file').change(function(){
 	    processData: false,
 	    type: 'POST',
 	    success: function(data){
-	    	d = new Date();
-	    	$('#imgAjax').removeAttr('src').attr('src','/'+data+'?'+d.getTime());
+	    	if(data != ""){
+	    		d = new Date();
+	    		$('#imgAjax').removeAttr('src').attr('src','/'+data+'?'+d.getTime());
+	    	}
+
 	    }
 	});
 });
@@ -302,6 +306,43 @@ $(':file').change(function(){
 	});			
 
 </script>
+  <script>
+   $('#follow').on('click', function (e) {
+    e.preventDefault();
+    var $btn = $(this);
+    $btn.addClass("disabled");
+    $btn.text("Guardando");
+    //Llamada ajax here
+    var status = $(this).attr("data-status");
+    var id = $('#eventId').val();
+    var user = {{ _user.id }};
+        postData = {
+                id: id,
+                status: status,
+                user: user
+        };
+        $.post('/Ajax/userEvent.php', postData,function(data) {
+
+          var success = data['success'];
+          var status = parseInt(data['status']);
+            if(success){
+              if(status === 1)
+              {
+                  $btn.attr("data-status","0");
+                  $btn.removeClass("disabled");
+                  $btn.text("{{ ('label-status-1')|t }}");
+                  $btn.css('opacity','1');
+
+              }else{
+                  $btn.attr("data-status","1");
+                  $btn.removeClass("disabled");
+                  $btn.text("{{ ('label-status-0')|t }}");
+                  $btn.css('opacity','1');
+              }
+            }
+        },"json");
+  });
+  </script>
 {% endblock %}
 
 

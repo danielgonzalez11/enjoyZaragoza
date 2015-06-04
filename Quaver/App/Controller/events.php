@@ -37,18 +37,21 @@ class events extends Controller
     		$path = realpath($eventFile->source);
     		$path = substr($path, 22);
 
-
     		if($_user->logged){
 	    		if($_user->level == 'admin' || $userEvent->id == $_user->id){
 	    			$adminorcreator = true;
 	    		}    			
     		}
 
+
+            $go = "";
+
     		$this->addTwigVars('category', $categories);
     		$this->addTwigVars('userEvent', $userEvent);
     		$this->addTwigVars('eventInfo', $eventInfo);
     		$this->addTwigVars('path', $path);
     		$this->addTwigVars('event', $event);
+            $this->addTwigVars('go', $go);
     		$this->addTwigVars('adminOrCreator', $adminorcreator);
     	}else{
     		header('Location: /');

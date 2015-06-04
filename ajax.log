@@ -499,3 +499,18 @@ Stack trace:
 [04-Jun-2015 13:50:35 Europe/Madrid] PHP Fatal error:  Call to undefined method stdClass::save() in /var/www/enjoyZaragoza/Ajax/EditEvent.php on line 116
 [04-Jun-2015 13:50:35 Europe/Madrid] PHP Stack trace:
 [04-Jun-2015 13:50:35 Europe/Madrid] PHP   1. {main}() /var/www/enjoyZaragoza/Ajax/EditEvent.php:0
+[04-Jun-2015 17:22:37 Europe/Madrid] PHP Notice:  Undefined index: / in /var/www/enjoyZaragoza/Quaver/Core/Router.php on line 273
+[04-Jun-2015 17:22:37 Europe/Madrid] PHP Stack trace:
+[04-Jun-2015 17:22:37 Europe/Madrid] PHP   1. {main}() /var/www/enjoyZaragoza/Ajax/EditEvent.php:0
+[04-Jun-2015 17:22:37 Europe/Madrid] PHP   2. Quaver\Core\Router->dispatch() /var/www/enjoyZaragoza/Ajax/EditEvent.php:12
+[04-Jun-2015 17:22:53 Europe/Madrid] PHP Notice:  Undefined index: / in /var/www/enjoyZaragoza/Quaver/Core/Router.php on line 273
+[04-Jun-2015 17:22:53 Europe/Madrid] PHP Stack trace:
+[04-Jun-2015 17:22:53 Europe/Madrid] PHP   1. {main}() /var/www/enjoyZaragoza/Ajax/EditEvent.php:0
+[04-Jun-2015 17:22:53 Europe/Madrid] PHP   2. Quaver\Core\Router->dispatch() /var/www/enjoyZaragoza/Ajax/EditEvent.php:12
+[04-Jun-2015 17:28:35 Europe/Madrid] PHP Notice:  Undefined index: / in /var/www/enjoyZaragoza/Quaver/Core/Router.php on line 273
+[04-Jun-2015 17:28:35 Europe/Madrid] PHP Stack trace:
+[04-Jun-2015 17:28:35 Europe/Madrid] PHP   1. {main}() /var/www/enjoyZaragoza/Ajax/EditEvent.php:0
+[04-Jun-2015 17:28:35 Europe/Madrid] PHP   2. Quaver\Core\Router->dispatch() /var/www/enjoyZaragoza/Ajax/EditEvent.php:12
+[04-Jun-2015 17:28:52 Europe/Madrid] PHP Notice:  Undefined variable: correcto in /var/www/enjoyZaragoza/Ajax/EditEvent.php on line 126
+[04-Jun-2015 17:28:52 Europe/Madrid] PHP Stack trace:
+[04-Jun-2015 17:28:52 Europe/Madrid] PHP   1. {main}() /var/www/enjoyZaragoza/Ajax/EditEvent.php:0
