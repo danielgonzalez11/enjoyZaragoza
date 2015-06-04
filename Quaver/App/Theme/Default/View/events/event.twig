@@ -16,10 +16,10 @@
 				{% if adminOrCreator %}
 				<form id="image-form" method="post" enctype="multipart/form-data">
 				  <div class="form-group">	
-					<img src="{{ path }}" class="img-responsive"></img>
+					<img id="imgAjax" src="{{ path }}" class="img-responsive"></img>
 			        <a href="#" class="text-normal btn btn-link btn-edit btn-file ">
 			          <span class="btn-label" >Editar</span>
-			          <input type="file" name="image" class="form-control-inline">
+			          <input type="file" name="image" id="image" class="form-control">
 			        </a>					
 				  </div>	
 				</form>
@@ -192,9 +192,10 @@ $( document ).ready(function() {
 	var value;
 	var radios = false;
 	var imagen = true;
-	$('.form-control-inline:input').focusin(function(){
+	$(':input.form-control-inline').focusin(function(){
 		var $i = $(this);
 		value = $i.val();
+		alert("entra¿?");
 		var name = $i.prop("name");
 		switch(name) {
 		    case 'capacity':
@@ -250,6 +251,31 @@ $( document ).ready(function() {
 	        	alert(correct);
 	        },"json");
 		}
+	});
+});
+</script>
+<script>
+$(':file').change(function(){
+	var data = new FormData();
+	var id = $('#eventId').val();
+	jQuery.each(jQuery('#image')[0].files, function(i, file) {
+	    data.append('image', file);
+	    data.append('name','image');
+		data.append('id',id);
+	});
+
+
+	jQuery.ajax({
+	    url: '/Ajax/EditEvent.php',
+	    data: data,
+	    cache: false,
+	    contentType: false,
+	    processData: false,
+	    type: 'POST',
+	    success: function(data){
+	    	d = new Date();
+	    	$('#imgAjax').removeAttr('src').attr('src','/'+data+'?'+d.getTime());
+	    }
 	});
 });
 

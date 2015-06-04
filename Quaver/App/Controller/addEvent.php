@@ -85,7 +85,7 @@ class addEvent extends Controller
 
 	    		$error = false;
 	    		
-	    		$imgPath = FILES_PATH . '/events/' . $events->id; 
+	    		$imgPath = FILES_PATH .'/events/'. $events->id; 
 			      switch ($_FILES['image']['type']) {
 			        case('image/jpeg'):
 			        case('image/jpg'):
@@ -102,14 +102,16 @@ class addEvent extends Controller
 			          break;
 			      }
 			      if(!$error){
-			      	move_uploaded_file($_FILES['image']['tmp_name'], $imgPath);	
+			      	if(move_uploaded_file($_FILES['image']['tmp_name'], $imgPath)){
+			      		$eventsFiles = new EventFile();
+					    $eventsFiles->event = $events->id;
+					    $eventsFiles->source = $imgPath;
+					    $eventsFiles->file = $_FILES['image']['type'];
+					    $eventsFiles->save();
+			      	}	
 			      }
 
-			    $eventsFiles = new EventFile();
-			    $eventsFiles->event = $events->id;
-			    $eventsFiles->source = $imgPath;
-			    $eventsFiles->file = $_FILES['image']['type'];
-			    $eventsFiles->save();
+
 
 			    //Error
 			    $this->addTwigVars('error', $error);			            

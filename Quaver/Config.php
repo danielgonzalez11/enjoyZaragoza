@@ -11,7 +11,7 @@ define('CONTROLLER_PATH', GLOBAL_PATH . '/Quaver/App/Controller');
 define('VENDOR_PATH', GLOBAL_PATH . '/vendor');
 
 // Resource Path
-define('FILES_PATH', './files');
+define('FILES_PATH', 'files');
 define('THEME_QUAVER', 'Default');
 define('BRAND_NAME', 'enjoyZaragoza');
 

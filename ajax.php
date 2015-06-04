@@ -8,6 +8,8 @@
 namespace Quaver;
 
 define('GLOBAL_PATH', dirname(__FILE__));
+chdir(GLOBAL_PATH);
+
 ini_set('display_errors', 1);
 error_reporting(E_ALL|E_STRICT);
 if (!file_exists(GLOBAL_PATH . '/ajax.log')) {

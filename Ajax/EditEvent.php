@@ -8,15 +8,17 @@ use Quaver\App\Model\EventInfo;
 use Quaver\App\Model\EventFile;
 
 $router = new Router();
-
 if (!isset($_REQUEST['id'], $_REQUEST['name'])) {
     $router->dispatch('e404');
     exit;
 }
 
+
 $id = $_REQUEST['id'];
 $name = $_REQUEST['name'];
-$value = $_REQUEST['value'];
+if($name != 'image'){
+    $value = $_REQUEST['value'];    
+}
 $correct = false;
 
 
@@ -88,8 +90,6 @@ switch ($name) {
             $router->dispatch('e404');
             exit;
         }
-        $eventFile = new EventFile();
-        $eventFile->getFromEvent($id);
         $error = false;
         $imgPath = FILES_PATH . '/events/' . $id; 
                   switch ($_FILES['image']['type']) {
@@ -109,16 +109,16 @@ switch ($name) {
                   }
                   if(!$error){
                         if(move_uploaded_file($_FILES['image']['tmp_name'], $imgPath)){
-                            $eventsFiles->source = $imgPath;
-                            $eventsFiles->file = $_FILES['image']['type'];
-                            if($eventsFiles->save()){
-                                $correct = true;
-                                echo $correct;
+                            $eventFile = new EventFile();
+                            $eventFile->getFromEvent($id);
+                            $eventFile->source = $imgPath;
+                            $eventFile->file = $_FILES['image']['type'];
+                            if($eventFile->save()){
+                                echo $imgPath;
                             }
                         }
 
-                    }
-        
+                  }
         break;
 
     default:
