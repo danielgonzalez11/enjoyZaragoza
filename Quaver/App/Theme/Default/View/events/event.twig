@@ -83,7 +83,7 @@
 			          </div>
 			        </div>
 					<div class="form-group">
-			          <label for="description" class="pull-left">
+			          <label class="pull-left">
 			            <span class="label-text">Creado por:</span>
 			          </label>
 			          <div class="form-control-wrap">
@@ -170,9 +170,9 @@
 				{% endif %}	
 				{% if _user.logged %}
 					{% if go %}
-					<a href="#" id="follow" data-status="1" class="btn btn-orange-brown form-control">No Asistiré</a>
+					<a href="#" id="follow"  class="btn btn-orange-brown form-control">No Asistiré</a>
 					{% else %}
-					<a href="#" id="follow" data-status="0" class="btn btn-orange-brown form-control">Asistiré</a>
+					<a href="#" id="follow"  class="btn btn-orange-brown form-control">Asistiré</a>
 					{% endif %}
 				{% else %}
 					<a data-toggle="modal" data-target="#modal-login" class="btn btn-orange-brown form-control">Asistiré</a>
@@ -313,32 +313,22 @@ $(':file').change(function(){
     $btn.addClass("disabled");
     $btn.text("Guardando");
     //Llamada ajax here
-    var status = $(this).attr("data-status");
     var id = $('#eventId').val();
     var user = {{ _user.id }};
         postData = {
                 id: id,
-                status: status,
                 user: user
         };
         $.post('/Ajax/userEvent.php', postData,function(data) {
-
-          var success = data['success'];
-          var status = parseInt(data['status']);
-            if(success){
-              if(status === 1)
-              {
-                  $btn.attr("data-status","0");
+            if(data){
                   $btn.removeClass("disabled");
-                  $btn.text("{{ ('label-status-1')|t }}");
+                  $btn.text("No Asistiré");
                   $btn.css('opacity','1');
 
-              }else{
-                  $btn.attr("data-status","1");
+            }else{
                   $btn.removeClass("disabled");
-                  $btn.text("{{ ('label-status-0')|t }}");
+                  $btn.text("Asistiré");
                   $btn.css('opacity','1');
-              }
             }
         },"json");
   });

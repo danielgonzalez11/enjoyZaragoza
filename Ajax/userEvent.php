@@ -6,27 +6,25 @@ use Quaver\App\Model\UserEvent;
 
 $router = new Router();
 
-if (!isset($_REQUEST['status'], $_REQUEST['id'], $_REQUEST['user'])) {
+if (!isset($_REQUEST['id'], $_REQUEST['user'])) {
     $router->dispatch('e404');
     exit;
 }
 
-$status = $_REQUEST['status'];
-$event = (int) $_REQUEST['id'];
-$user =	(int) $_REQUEST['user'];
+$event = $_REQUEST['id'];
+$user =	$_REQUEST['user'];
+$follow = false;
 
-$ue = new userEvent();
-$ue->getFromUser($_user->id, $projectId);
-$correcto = true;
+$ue = new UserEvent();
+$ue->getFollow($event,$user);
 
-if ($status != $opt->follow) {
-    $opt->follow = $status;
-    $correcto = $opt->save();
+if(is_null($ue->id)){
+	$ue->id_user = $user;
+	$ue->id_event = $event;
+	$ue->save();
+	$follow = true;	
+}else{
+	$ue->delete();
 }
 
-$resultado = array(
-    'success' => $correcto,
-    'status' => $status,
-);
-
-echo json_encode($resultado);
+echo json_encode($follow);

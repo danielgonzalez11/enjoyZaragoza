@@ -8,6 +8,7 @@ use Quaver\App\Model\Event;
 use Quaver\App\Model\EventInfo;
 use Quaver\App\Model\EventFile;
 use Quaver\App\Model\User;
+use Quaver\App\Model\UserEvent;
 use Quaver\App\Model\Category;
 
 class events extends Controller
@@ -24,6 +25,7 @@ class events extends Controller
     	$eventFile = new EventFile();
 		$userEvent = new User();
 		$category = new Category;
+        $uEvent = new UserEvent();
 		$categories =$category->getListCategory();		
 
 		$adminorcreator = false;
@@ -43,8 +45,15 @@ class events extends Controller
 	    		}    			
     		}
 
-
-            $go = "";
+            if($_user->logged){
+                $uEvent->getFollow($event->id,$_user->id);
+                if(is_null($uEvent->id)){
+                    $go = false;
+                }else{
+                    $go = true;
+                }
+            }
+                        
 
     		$this->addTwigVars('category', $categories);
     		$this->addTwigVars('userEvent', $userEvent);

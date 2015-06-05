@@ -34,9 +34,11 @@ switch ($name) {
         $event = new Event();
         $event->getFromId($id);
         $dateFinish = date('Y-m-d H:i:s', strtotime($value));
-        $event->dateFinish = $dateFinish;
-        $event->save();
-        $correct = true;
+        if($dateFinish !== '1970-01-01 01:00:00'){
+            $event->dateFinish = $dateFinish;
+            $event->save();
+            $correct = true;
+        }
         break;
     case 'category':
         $event = new Event();

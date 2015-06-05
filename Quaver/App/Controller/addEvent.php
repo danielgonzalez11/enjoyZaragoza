@@ -57,64 +57,71 @@ class addEvent extends Controller
 	    		if($capacity == 'limited'){
 	    			$capacity = $_POST['eventCapacity'];
 	    		}
-	    		//Imagen del evento
+	    		//checkeos 
+	    		$timeOk = true;
+	    		$imgOk = true;
+
 			    $CurrencyDate = date('Y/m/d H:i:s');
 			    $dateFinish = date('Y-m-d H:i:s', strtotime($date));
 
-			    //Events
-			    $events = new Event();
-			    $events->id_creator_user = $user->id;
-			    $events->name = $name;
-			    $events->dateCreate = $CurrencyDate;
-			    $events->dateFinish = $dateFinish;
-			    $events->status = 'accepted';
-			    $events->category = $category;
-			    $events->save();
-
-			    //Events info
-			    $eventsInfo = new EventInfo();
-			    $eventsInfo->id_event = $events->id;
-			    $eventsInfo->description = $description;
-			    $eventsInfo->phone = $phone;
-			    $eventsInfo->price = $price;
-			    $eventsInfo->capacity = $capacity;
-			    $eventsInfo->details = $details;
-			    $eventsInfo->save();
-
-			    //Events file
-
-	    		$error = false;
-	    		
-	    		$imgPath = FILES_PATH .'/events/'. $events->id; 
-			      switch ($_FILES['image']['type']) {
+			    if($dateFinish == '1970-01-01 01:00:00'){
+			    	$timeOk = false;
+			    }
+			    
+			    $ext = "";
+			    switch ($_FILES['image']['type']) {
 			        case('image/jpeg'):
 			        case('image/jpg'):
-			          $imgPath .= '.jpg';
+			          $ext = '.jpg';
 			          break;
 			        case('image/png'):
-			          $imgPath .= '.png';
+			          $ext = '.png';
 			          break;
 			        case('image/gif'):
-			          $imgPath .= '.gif';
+			          $ext = '.gif';
 			          break;
 			        default:
-			          $error = true;
+			          $imgOk = false;
 			          break;
-			      }
-			      if(!$error){
+			    }			    
+//--------------------------------------------------------------------------------------------------			    
+			    //SI TODO CORRECTO GUARDAMOS
+			    //Events
+			    $error = false;
+			    if($imgOk && $timeOk){
+				    $events = new Event();
+				    $events->id_creator_user = $user->id;
+				    $events->name = $name;
+				    $events->dateCreate = $CurrencyDate;
+				    $events->dateFinish = $dateFinish;
+				    $events->status = 'accepted';
+				    $events->category = $category;
+				    $events->save();
+
+				    //Events info
+				    $eventsInfo = new EventInfo();
+				    $eventsInfo->id_event = $events->id;
+				    $eventsInfo->description = $description;
+				    $eventsInfo->phone = $phone;
+				    $eventsInfo->price = $price;
+				    $eventsInfo->capacity = $capacity;
+				    $eventsInfo->details = $details;
+				    $eventsInfo->save();
+
+				    //Events file
+				    $imgPath = FILES_PATH . '/events/' . $events->id . $ext; 
 			      	if(move_uploaded_file($_FILES['image']['tmp_name'], $imgPath)){
 			      		$eventsFiles = new EventFile();
 					    $eventsFiles->event = $events->id;
 					    $eventsFiles->source = $imgPath;
 					    $eventsFiles->file = $_FILES['image']['type'];
 					    $eventsFiles->save();
-			      	}	
-			      }
-
-
-
+			      	}				    			    	
+			    }else{
+			    	$error = true;
+			    }
 			    //Error
-			    $this->addTwigVars('error', $error);			            
+			    $this->addTwigVars('error', $error);		            
 	    	}
 	}    
 }

@@ -3,18 +3,7 @@
 {% block title %}Users - Quaver Dashboard{% endblock %}
 
     {% block head %}
-    
-    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/plug-ins/725b2a2115b/integration/bootstrap/3/dataTables.bootstrap.css"/>
-    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="//cdn.datatables.net/plug-ins/725b2a2115b/integration/bootstrap/3/dataTables.bootstrap.js"></script>
-    
-    
-    <style>
-    
-    .table tbody tr:hover td, .table tbody tr:hover th {
-      background: rgb(197, 232, 255);
-    }
-    </style>
+  {% include "admin/scripts/datatables.js.twig" %}
 
 <script type="text/javascript">
             $(function() {
@@ -103,14 +92,8 @@
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title" id="myModalLabel">Delete</h4>
       </div>
-
-      
-      
       <div class="modal-body">
-        
-      <p>Do you want continue?</p>
-      
-    
+        <p>Do you want continue?</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
