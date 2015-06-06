@@ -125,7 +125,5 @@ switch ($name) {
 
     default:
         echo $correct;
-
-    
 }
 

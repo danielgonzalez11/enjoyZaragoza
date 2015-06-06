@@ -86,3 +86,8 @@ admin_users:
     controller: dashboard
     action: users
 
+admin_events:
+    url: /admin/events/([a-zA-Z0-9-_]+)?[/]?([a-zA-Z0-9-_]+)?[/]?
+    path: admin
+    controller: dashboard
+    action: events

@@ -27,7 +27,7 @@ class events extends Controller
 		$category = new Category;
         $uEvent = new UserEvent();
 		$categories =$category->getListCategory();		
-
+        $go="";
 		$adminorcreator = false;
     	$id = $this->router->getUrlPart(0);
     	$event->getFromId($id);

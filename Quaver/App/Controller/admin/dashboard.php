@@ -10,6 +10,7 @@ namespace Quaver\App\Controller\admin;
 use Quaver\Core\Controller;
 use Quaver\Core\LangStrings;
 use Quaver\App\Model\User;
+use Quaver\App\Model\Event;
 
 /**
  * Dashboard controller
@@ -222,6 +223,45 @@ class dashboard extends Controller
                 $items = $user->getList();
                 $this->addTwigVars('items', $items);
                 $this->setView('admin/user-List');
+                break;
+        }
+        $this->render();
+    }
+
+    /**
+     * Manage users
+     * @return type
+     */
+    public function eventsAction()
+    {
+        global $_user;
+        // Check privileges
+        if (!$_user->logged || !$_user->isAdmin()) {
+            header("Location: /login");
+            exit;
+        } 
+
+        // Control var
+        $added = false;
+
+        // Set up menu action
+        $this->addTwigVars('section', 'events');
+
+        // Selector
+        switch ($this->router->getUrlPart(0)) {
+            case('del'):
+                $event = new Event();
+                $item = $event->getFromId($this->router->url['uri'][1]);
+                if ($item->delete()){
+                    header("Location: /admin/events");
+                    exit;
+                }
+                break;
+            default:
+                $event = new Event();
+                $items = $event->getList();
+                $this->addTwigVars('items', $items);
+                $this->setView('admin/event-List');
                 break;
         }
         $this->render();
