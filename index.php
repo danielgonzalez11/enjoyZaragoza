@@ -15,7 +15,7 @@ if (!file_exists(GLOBAL_PATH . '/script_errors.log')) {
     fwrite($logFile, '');
     fclose($logFile);
 }
-ini_set('error_log', 'script_errors.log');
+ini_set('error_log', GLOBAL_PATH.'script_errors.log');
 ini_set('log_errors', 'On');
 
 date_default_timezone_set("Europe/Madrid");
@@ -30,9 +30,9 @@ if (!file_exists(GLOBAL_PATH . '/Quaver/Config.php') || !file_exists(GLOBAL_PATH
 }
 
 // Autoloader & Config
-require_once(GLOBAL_PATH . '/Quaver/Config.php');
-require_once(GLOBAL_PATH . '/Quaver/Core/Autoloader.php');
-require_once(VENDOR_PATH . '/autoload.php');
+require_once GLOBAL_PATH.'/Quaver/Config.php';
+require_once GLOBAL_PATH.'/Quaver/Core/Autoloader.php';
+require_once GLOBAL_PATH.'/vendor/autoload.php';
 \Twig_Autoloader::register();
 
 use Quaver\Core\Bootstrap;

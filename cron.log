@@ -1,0 +1,6 @@
+[08-Jun-2015 18:52:02 Europe/Madrid] PHP Notice:  Undefined index: HTTP_HOST in /var/www/enjoyZaragoza/Quaver/Config.php on line 20
+[08-Jun-2015 18:52:02 Europe/Madrid] PHP Notice:  Undefined index: HTTP_ACCEPT_LANGUAGE in /var/www/enjoyZaragoza/Quaver/Core/Helper.php on line 23
+[08-Jun-2015 18:55:01 Europe/Madrid] PHP Notice:  Undefined index: HTTP_HOST in /var/www/enjoyZaragoza/Quaver/Config.php on line 20
+[08-Jun-2015 18:55:01 Europe/Madrid] PHP Notice:  Undefined index: HTTP_ACCEPT_LANGUAGE in /var/www/enjoyZaragoza/Quaver/Core/Helper.php on line 23
+[08-Jun-2015 19:00:01 Europe/Madrid] PHP Notice:  Undefined index: HTTP_HOST in /var/www/enjoyZaragoza/Quaver/Config.php on line 20
+[08-Jun-2015 19:00:01 Europe/Madrid] PHP Notice:  Undefined index: HTTP_ACCEPT_LANGUAGE in /var/www/enjoyZaragoza/Quaver/Core/Helper.php on line 23

@@ -60,4 +60,22 @@ class Event extends Model
         }
     }
 
+    public static function getProjectsToFinish()
+    {
+        $return = array();
+
+        $db = new DB();
+
+        $items = $db->query("SELECT id FROM event WHERE status = 'accepted' AND dateCreate > 0 AND dateFinish < NOW()");
+        $result = $items->fetchAll();
+        if ($result) {
+            foreach ($result as $item) {
+                $p = new self();
+                $return[] = $p->getFromId($item['id']);
+            }
+        }
+
+        return $return;
+    }
+
 } 

@@ -23,7 +23,7 @@
               {% if _user.logged %}
               <li class="header-li"><a href="/add-event/" class="btn-header btn btn-orange fix-button-header">{{ ('header-create-event')|t }}</a></li>
               {% endif %}
-              <li class="header-li"><a href="/how-it-works/" class="btn-header btn btn-orange fix-button-header">{{ ('how-it-works')|t }}</a></li>
+              <li class="header-li"><a href="/" class="btn-header btn btn-orange fix-button-header">{{ ('how-it-works')|t }}</a></li>
               {% if not _user.logged %}
                   <li><a class="btn-header btn btn-brown fix-button-header fix-second-button-header" data-toggle="modal" data-target="#modal-login">{{ ('header-my-account')|t }}</a></li>
               {% endif %}

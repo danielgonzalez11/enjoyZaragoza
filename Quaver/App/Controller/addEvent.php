@@ -61,10 +61,10 @@ class addEvent extends Controller
 	    		$timeOk = true;
 	    		$imgOk = true;
 
-			    $CurrencyDate = date('Y/m/d H:i:s');
-			    $dateFinish = date('Y-m-d H:i:s', strtotime($date));
+			    $CurrencyDate = date('Y/m/d H:i');
+			    $dateFinish = date('Y-m-d H:i', strtotime($date));
 
-			    if($dateFinish == '1970-01-01 01:00:00'){
+			    if($dateFinish == '1970-01-01 01:00'){
 			    	$timeOk = false;
 			    }
 			    

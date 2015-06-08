@@ -8060,6 +8060,22 @@ div.dataTables_paginate {
   .event-header #event-form .radios-price {
     display: none; }
 
+.carousel {
+  margin-bottom: 5%; }
+
+.userGo {
+  color: yellow !important; }
+
+.completed {
+  color: #000 !important; }
+
+.calendar-separator {
+  margin-top: 1%; }
+  .calendar-separator span {
+    color: rgba(255, 255, 255, 0.9); }
+  .calendar-separator .custom-month-year {
+    margin: 0; }
+
 .modal-open {
   overflow: hidden; }
 
