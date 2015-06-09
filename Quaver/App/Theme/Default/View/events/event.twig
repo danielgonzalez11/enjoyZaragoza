@@ -105,7 +105,10 @@
 			          </label>
 			          <label for="capacity" class="pull-right"><span class="btn btn-link btn-edit">Editar</span></label>
 			          <div class="form-control-wrap">
-			          	<input type="text" class="form-control form-control-inline" id="capacity" value="{{ eventInfo.capacity }}" name="capacity" placeholder="escribe el aforo del evento.....">	
+			          	<div class="input-group">
+			          	<input type="text" class="form-control form-control-inline" id="capacity" value="{{ eventInfo.capacity }}" name="capacity" placeholder="escribe el aforo del evento.....">
+			          	<div class="input-group-addon"><i class="fa fa-users"></i></div>
+			          	</div>	
 			          </div>
 			          	<div class="radios-capacity">
 							<div class="radio-inline">
@@ -129,7 +132,10 @@
 			          </label>
 			          <label for="price" class="pull-right"><span class="btn btn-link btn-edit">Editar</span></label>
 			          <div class="form-control-wrap">
-			          	<input type="text" class="form-control form-control-inline" id="price" value="{{ eventInfo.price }}" name="price" placeholder="escribe el precio del evento.....">	
+			          	<div class="input-group">
+			          	<input type="text" class="form-control form-control-inline" id="price" value="{{ eventInfo.price }}" name="price" placeholder="escribe el precio del evento.....">
+			          	<div class="input-group-addon"><i class="fa fa-eur"></i></div>
+			          	</div>	
 			          </div>
 			          <div class="radios-price">
 			          	<div class="radio-inline">
@@ -322,7 +328,7 @@ $(':file').change(function(){
     $btn.addClass("disabled");
     $btn.text("Guardando");
     //Llamada ajax here
-    var id = $('#eventId').val();
+    var id = {{ event.id }};
     var user = {{ _user.id }};
         postData = {
                 id: id,
@@ -349,7 +355,22 @@ $(':file').change(function(){
 				required : true,
 				digits	: true,
 				minlength : 9
-			}
+			}/*,
+			price: {
+				digits	: function(){
+					if($('#limited').click()){
+						return true;
+					}
+
+				}
+			},
+			capacity: {
+				digits	: function(){
+					if($('#cost').click()){
+						return true;
+					}
+				}
+			}*/
   		}
   });
   </script>

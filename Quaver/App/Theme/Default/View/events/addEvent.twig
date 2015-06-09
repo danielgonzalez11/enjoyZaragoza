@@ -24,7 +24,7 @@
         <div class="row">
             <div class="alert alert-success alert-dismissible" role="alert">
               <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <strong>¡Enhorabuena!</strong> El evento se creó satisfactoriamente.
+              <strong>¡Enhorabuena!</strong> El evento se creó satisfactoriamente. EL enlace al evento es el siguiente <a href="/event/{{ eventoNuevo }}">evento</a>.
             </div>
       </div>	
 	{% endif %}
@@ -78,13 +78,13 @@
 	        <div class="form-group">
 	        	<label for="description" class="col-md-2 control-label">Descripción:</label>
 				<div class="col-md-10">
-            		<textarea rows="4" maxlength="255" id="description" name="description" class="form-control" required placeholder="Escribe la descripción del evento aquí..."></textarea>
+            		<textarea rows="4" maxlength="255" id="description" name="description" class="form-control" required placeholder="Escribe la descripción del evento aquí"></textarea>
             	</div>
         	</div>
 			<div class="form-group">
-	        	<label for="eventPhone" class="col-md-2 control-label">Contacto:</label>
+	        	<label for="eventPhone" class="col-md-2 control-label">Teléfono:</label>
 				<div class="col-md-10">				
-	           	<input type="text" class="form-control" id="eventPhone" name="eventPhone" minlength="9" maxlength="9" required placeholder="Tu teléfono de contacto.....">
+	           	<input type="text" class="form-control" id="eventPhone" name="eventPhone" minlength="9" maxlength="9" required placeholder="Tu teléfono de contacto">
 	           </div>
 	        </div>        	
 			<div class="form-group">
@@ -108,7 +108,7 @@
 				<div  id="checkFree">
 					<label for="eventDetails" class="col-md-2 control-label"></label>
 					<div class="col-md-10">
-		           	<input type="text" class="form-control"  name="eventPrice"  maxlength="45"  placeholder="tanto dinero...">
+		           	<input type="text" class="form-control"  name="eventPrice"  maxlength="45"  placeholder="Escriba con número el dinero de la entrada">
 		           </div>
 	           </div>
 	        </div>
@@ -132,14 +132,14 @@
 				<div id="checkCapacity">
 					<label for="eventCapacity" class="col-md-2 control-label"></label>	
 					<div class="col-md-10" >			
-		           	<input type="text" class="form-control"  name="eventCapacity" maxlength="11"  placeholder="tanto número de personas...">
+		           	<input type="text" class="form-control"  name="eventCapacity" maxlength="11"  placeholder="Escriba con número la capacidad del evento">
 		           </div>
 	       		</div>
 	        </div>
 			<div class="form-group">
 	        	<label for="eventDetails" class="col-md-2 control-label">Detalles:</label>
 				<div class="col-md-10">				
-	           	<input type="text" class="form-control"  name="eventDetails" maxlength="300" required placeholder="Detalles a tener en cuenta...como +18, llevar..tal">
+	           	<input type="text" class="form-control"  name="eventDetails" maxlength="300" required placeholder="Detalles a tener en cuenta para asistir (Ejemplo: mayoría de edad)">
 	           </div>
 	        </div>	    
 			<div class="form-group">
@@ -212,16 +212,19 @@ $('#createEvent').validate({
 				required : true
 		},
 		eventPrice : {
-				required : true
+				required : true,
+				digits	: true
 		},
 		capacity : {
 				required : true
 		},
 		eventCapacity : {
-				required : true
+				required : true,
+				digits	: true
 		},
 		eventDetails : {
-				required : true
+				required : true,
+				maxlength : 120
 		}
 
 	}

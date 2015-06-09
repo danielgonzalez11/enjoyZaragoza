@@ -554,3 +554,31 @@ Stack trace:
 [09-Jun-2015 13:52:16 Europe/Madrid] PHP Stack trace:
 [09-Jun-2015 13:52:16 Europe/Madrid] PHP   1. {main}() /var/www/enjoyZaragoza/Ajax/EditEvent.php:0
 [09-Jun-2015 13:52:16 Europe/Madrid] PHP   2. Quaver\Core\Router->dispatch() /var/www/enjoyZaragoza/Ajax/EditEvent.php:12
+[09-Jun-2015 19:27:51 Europe/Madrid] PHP Notice:  Undefined index: / in /var/www/enjoyZaragoza/Quaver/Core/Router.php on line 273
+[09-Jun-2015 19:27:51 Europe/Madrid] PHP Stack trace:
+[09-Jun-2015 19:27:51 Europe/Madrid] PHP   1. {main}() /var/www/enjoyZaragoza/Ajax/userEvent.php:0
+[09-Jun-2015 19:27:51 Europe/Madrid] PHP   2. Quaver\Core\Router->dispatch() /var/www/enjoyZaragoza/Ajax/userEvent.php:10
+[09-Jun-2015 19:28:07 Europe/Madrid] PHP Notice:  Undefined index: / in /var/www/enjoyZaragoza/Quaver/Core/Router.php on line 273
+[09-Jun-2015 19:28:07 Europe/Madrid] PHP Stack trace:
+[09-Jun-2015 19:28:07 Europe/Madrid] PHP   1. {main}() /var/www/enjoyZaragoza/Ajax/userEvent.php:0
+[09-Jun-2015 19:28:07 Europe/Madrid] PHP   2. Quaver\Core\Router->dispatch() /var/www/enjoyZaragoza/Ajax/userEvent.php:10
+[09-Jun-2015 19:28:22 Europe/Madrid] PHP Notice:  Undefined index: / in /var/www/enjoyZaragoza/Quaver/Core/Router.php on line 273
+[09-Jun-2015 19:28:22 Europe/Madrid] PHP Stack trace:
+[09-Jun-2015 19:28:22 Europe/Madrid] PHP   1. {main}() /var/www/enjoyZaragoza/Ajax/userEvent.php:0
+[09-Jun-2015 19:28:22 Europe/Madrid] PHP   2. Quaver\Core\Router->dispatch() /var/www/enjoyZaragoza/Ajax/userEvent.php:10
+[09-Jun-2015 19:31:46 Europe/Madrid] PHP Notice:  Undefined index: / in /var/www/enjoyZaragoza/Quaver/Core/Router.php on line 273
+[09-Jun-2015 19:31:46 Europe/Madrid] PHP Stack trace:
+[09-Jun-2015 19:31:46 Europe/Madrid] PHP   1. {main}() /var/www/enjoyZaragoza/Ajax/userEvent.php:0
+[09-Jun-2015 19:31:46 Europe/Madrid] PHP   2. Quaver\Core\Router->dispatch() /var/www/enjoyZaragoza/Ajax/userEvent.php:10
+[09-Jun-2015 21:32:51 Europe/Madrid] PHP Notice:  Undefined index: / in /var/www/enjoyZaragoza/Quaver/Core/Router.php on line 273
+[09-Jun-2015 21:32:51 Europe/Madrid] PHP Stack trace:
+[09-Jun-2015 21:32:51 Europe/Madrid] PHP   1. {main}() /var/www/enjoyZaragoza/Ajax/userEvent.php:0
+[09-Jun-2015 21:32:51 Europe/Madrid] PHP   2. Quaver\Core\Router->dispatch() /var/www/enjoyZaragoza/Ajax/userEvent.php:10
+[09-Jun-2015 21:33:01 Europe/Madrid] PHP Notice:  Undefined index: / in /var/www/enjoyZaragoza/Quaver/Core/Router.php on line 273
+[09-Jun-2015 21:33:01 Europe/Madrid] PHP Stack trace:
+[09-Jun-2015 21:33:01 Europe/Madrid] PHP   1. {main}() /var/www/enjoyZaragoza/Ajax/userEvent.php:0
+[09-Jun-2015 21:33:01 Europe/Madrid] PHP   2. Quaver\Core\Router->dispatch() /var/www/enjoyZaragoza/Ajax/userEvent.php:10
+[09-Jun-2015 21:38:29 Europe/Madrid] PHP Notice:  Undefined index: / in /var/www/enjoyZaragoza/Quaver/Core/Router.php on line 273
+[09-Jun-2015 21:38:29 Europe/Madrid] PHP Stack trace:
+[09-Jun-2015 21:38:29 Europe/Madrid] PHP   1. {main}() /var/www/enjoyZaragoza/Ajax/userEvent.php:0
+[09-Jun-2015 21:38:29 Europe/Madrid] PHP   2. Quaver\Core\Router->dispatch() /var/www/enjoyZaragoza/Ajax/userEvent.php:10

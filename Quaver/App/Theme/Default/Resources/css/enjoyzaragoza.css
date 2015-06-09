@@ -8069,6 +8069,9 @@ div.dataTables_paginate {
 .completed {
   color: #000 !important; }
 
+.inTheTop {
+  z-index: 999; }
+
 .calendar-separator {
   margin-top: 1%; }
   .calendar-separator span {

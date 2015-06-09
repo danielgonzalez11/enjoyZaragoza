@@ -18,14 +18,14 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
               {% if not _user.logged %}
-                <li class="header-li"><a href="/add-event/" class="btn-header btn btn-orange fix-button-header" data-toggle="modal" data-target="#modal-login">{{ ('header-create-event')|t }}</a></li>
+                <li class="header-li"><a href="#modal-login" class="btn-header btn btn-orange fix-button-header" data-toggle="modal" data-target="#modal-login">{{ ('header-create-event')|t }}</a></li>
               {% endif %}
               {% if _user.logged %}
               <li class="header-li"><a href="/add-event/" class="btn-header btn btn-orange fix-button-header">{{ ('header-create-event')|t }}</a></li>
               {% endif %}
               <li class="header-li"><a href="/" class="btn-header btn btn-orange fix-button-header">{{ ('how-it-works')|t }}</a></li>
               {% if not _user.logged %}
-                  <li><a class="btn-header btn btn-brown fix-button-header fix-second-button-header" data-toggle="modal" data-target="#modal-login">{{ ('header-my-account')|t }}</a></li>
+                  <li><a href="#modal-login" class="btn-header btn btn-brown fix-button-header fix-second-button-header" data-toggle="modal" data-target="#modal-login">{{ ('header-my-account')|t }}</a></li>
               {% endif %}
               {% if _user.logged %}
                   <li class="dropdown-userlogged">{% include 'general/header-logged.twig' %}</li>
@@ -38,14 +38,6 @@
             {% for lang in languages %}
               <a class="btn btn-orange btn-lang" href="/language/{{ lang.slug }}" {% if lang.id == language.id %}disabled{% endif %}>{{ lang.name[:2] }}</a>
             {% endfor %}
-            {# <button type="button" class="btn btn-orange btn-lang dropdown-toggle" data-toggle="dropdown" aria-expanded="true" role="button">{{ language.name[:2] }}
-              <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
-              {% for lang in languages %}
-                  <li><a href="/language/{{ lang.slug }}">{{ lang.name[:2] }}</a></li>
-              {% endfor %}
-            </ul>   #}
           </div>
         </div><!-- /.container-fluid -->
         <div class="home-sep visible-xs-block"></div>

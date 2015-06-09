@@ -13,7 +13,6 @@
               {# <h2>Inicia sesión</h2> #}
               <label class="label-no-margin">{{ ('modal-label-login')|t }}</label>
               <form class="login-form" action="/login/" method="post"> 
-                <input type="hidden" name="ref" value="">
                 <div class="form-group">
                   <input type="email" class="form-control" id="" name="email" maxlength="255" required placeholder="{{ ('modal-label-email-placeholder')|t }}">
                 </div>
@@ -23,7 +22,7 @@
                 <div class="checkbox">
                 </div>
                 <p><button type="submit" class="btn btn-orange">{{ ('modal-label-login-button')|t }}</button></p>
-                <p><a href="/recovery" class="fc-orange">{{ ('modal-label-login-button-forget')|t }}</a></p>
+                <p><a href="/" class="fc-orange">{{ ('modal-label-login-button-forget')|t }}</a></p>
               </form>
             </div>
 
@@ -45,7 +44,8 @@
                 <div class="checkbox">
                   <label>
                     <input type="checkbox" name="check-auth" value="1" required> 
-                     <a href="/terms" target="_blank">{{ ('modal-label-terms')|t }}</a>
+                     <a href="/" target="_blank">{{ ('modal-label-terms')|t }}</a>
+                     <label id="check-auth-error" class="error" for="check-auth" style="display:none;">Este campo es obligatorio.</label>
                   </label>
                 </div>
                 <button type="submit" class="btn btn-orange">{{ ('modal-label-create-account')|t }}</button>
@@ -58,6 +58,7 @@
           <label class="label-modal-info">{{ ('modal-label-info')|t }}</label>
         </div>
       </div>
+
     </div>
   </div>
 </div>

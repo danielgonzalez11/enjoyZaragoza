@@ -8,6 +8,7 @@ use Quaver\App\Model\Event;
 use Quaver\App\Model\Category;
 use Quaver\App\Model\EventInfo;
 use Quaver\App\Model\EventFile;
+use Quaver\App\Model\UserEvent;
 
 class addEvent extends Controller
 {   
@@ -97,7 +98,8 @@ class addEvent extends Controller
 				    $events->status = 'accepted';
 				    $events->category = $category;
 				    $events->save();
-
+				    //
+				    $this->addTwigVars('eventoNuevo', $events->id);
 				    //Events info
 				    $eventsInfo = new EventInfo();
 				    $eventsInfo->id_event = $events->id;
@@ -107,7 +109,11 @@ class addEvent extends Controller
 				    $eventsInfo->capacity = $capacity;
 				    $eventsInfo->details = $details;
 				    $eventsInfo->save();
-
+				    //User creator
+				    $userevent = new UserEvent();
+				    $userevent->id_user = $user->id;
+					$userevent->id_event = $events->id;
+					$userevent->save();
 				    //Events file
 				    $imgPath = FILES_PATH . '/events/' . $events->id . $ext; 
 			      	if(move_uploaded_file($_FILES['image']['tmp_name'], $imgPath)){
@@ -116,12 +122,15 @@ class addEvent extends Controller
 					    $eventsFiles->source = $imgPath;
 					    $eventsFiles->file = $_FILES['image']['type'];
 					    $eventsFiles->save();
-			      	}				    			    	
+			      	}
+
 			    }else{
 			    	$error = true;
 			    }
 			    //Error
-			    $this->addTwigVars('error', $error);		            
+			    $this->addTwigVars('error', $error);
+
+
 	    	}
 	}    
 }
