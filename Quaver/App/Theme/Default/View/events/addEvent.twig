@@ -64,6 +64,7 @@
 		            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
 	                <input type='text' name="date" class="form-control"/>
 	            	</div>
+	            	<label id="date-error" class="error" for="date" style="display:none;">Este campo es obligatorio.</label>
 	            </div>	
 			</div>
 			<script>
@@ -100,6 +101,7 @@
 					    <input type="radio" required name="price" id="cost" value="cost">
 					    Con aportación
 					  </label>
+					  <label id="price-error" class="error" for="price" style="display:none; margin-left:40px;">Este campo es obligatorio.</label>
 					</div>	
 				</div>
 
@@ -124,6 +126,7 @@
 					    <input type="radio" required name="capacity" id="unlimited" value="unlimited">
 					    Ilimitado
 					  </label>
+					  <label id="capacity-error" class="error" for="capacity" style="display:none; margin-left:40px;">Este campo es obligatorio.</label>
 					</div>
 				</div>		
 				<div id="checkCapacity">

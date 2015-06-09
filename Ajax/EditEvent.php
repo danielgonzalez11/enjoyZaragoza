@@ -9,7 +9,7 @@ use Quaver\App\Model\EventFile;
 
 $router = new Router();
 if (!isset($_REQUEST['id'], $_REQUEST['name'])) {
-    $router->dispatch('e404');
+    header("Location :/");
     exit;
 }
 
@@ -120,7 +120,11 @@ switch ($name) {
                             }
                         }
 
+                  }else{
+                    echo $error;
                   }
+
+
         break;
 
     default:

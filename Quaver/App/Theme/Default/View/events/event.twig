@@ -225,33 +225,42 @@ $( document ).ready(function() {
 		if(initial2 != change2){
 			radios = true;					
 		}
-
-		if($i.val() != value || radios || imagen){
-			//AJAX
-			var id = $('#eventId').val();
-			var name = $i.attr('name');
-			var val = $i.val();
-			if(name =='price'){
-				if($('#price').val() == ''){
-					name = initial1;
+		
+			if($i.val() != value || radios || imagen){
+				//AJAX
+				var id = $('#eventId').val();
+				var name = $i.attr('name');
+				var val = $i.val();
+				if(name =='price'){
+					if($('#price').val() == ''){
+						val = initial1;
+					}
 				}
-			}
-			if(name =='capacity'){
-				if($('#capacity').val() == ''){
-					name = initial2;
+				if(name =='capacity'){
+					if($('#capacity').val() == ''){
+						val = initial2;
+					}
 				}
-			}
-					
-			postData = {
-	                id: id,
-	                name: name,
-	                value: val
-	        };
+				if(name=='eventPhone'){
+					if(!$.isNumeric(val)){
+						val = value;
+					}
+				}
+				if(val == ""){
+					val = value;
+				}
+				postData = {
+		                id: id,
+		                name: name,
+		                value: val
+		        };
 
-	        $.post('/Ajax/EditEvent.php', postData,function(data) {
-	        	var correct = data;
-	        },"json");
-		}
+		        $.post('/Ajax/EditEvent.php', postData,function(data) {
+		        	var correct = data;
+		        },"json");
+			}
+		
+
 	});
 });
 </script>
@@ -274,7 +283,7 @@ $(':file').change(function(){
 	    processData: false,
 	    type: 'POST',
 	    success: function(data){
-	    	if(data != ""){
+	    	if(data != true && data != ""){
 	    		d = new Date();
 	    		$('#imgAjax').removeAttr('src').attr('src','/'+data+'?'+d.getTime());
 	    	}
@@ -290,18 +299,18 @@ $(':file').change(function(){
 	});
 	$('#cost').click(function(){
 		$('#price').focus();
-		$('#price').attr('value','');
+		$('#price').val('');
 	});
 	$('#limited').click(function(){
 		$('#capacity').focus();
-		$('#capacity').attr('value','');
+		$('#capacity').val('');
 	});
 	$('#free').click(function(){	
-		$('#price').attr('value', 'free');
+		$('#price').val('free');
 		$('#price').focus();
 	});
-	$('#unlimited').click(function(){
-		$('#capacity').attr('value', 'unlimited');
+	$('#unlimited').on("click",function(){		
+		$('#capacity').val('unlimited');
 		$('#capacity').focus();
 	});			
 
@@ -331,6 +340,17 @@ $(':file').change(function(){
                   $btn.css('opacity','1');
             }
         },"json");
+  });
+  </script>
+  <script>
+  $('#event-form').validate({
+  		rules: {
+  			eventPhone: {
+				required : true,
+				digits	: true,
+				minlength : 9
+			}
+  		}
   });
   </script>
 {% endblock %}
