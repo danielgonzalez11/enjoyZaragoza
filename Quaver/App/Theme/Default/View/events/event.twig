@@ -237,14 +237,26 @@ $( document ).ready(function() {
 				var id = $('#eventId').val();
 				var name = $i.attr('name');
 				var val = $i.val();
+
+				var p = $("#cost").prop("checked");
 				if(name =='price'){
 					if($('#price').val() == ''){
-						val = initial1;
+						val = initial2;
+					}else if(p){
+						if(!$.isNumeric($('#price').val())){
+							val = initial2;
+						}	
 					}
 				}
+
+				var c = $("#limited").prop("checked");
 				if(name =='capacity'){
 					if($('#capacity').val() == ''){
-						val = initial2;
+						val = initial1;
+					}else if(c){
+						if(!$.isNumeric($('#capacity').val())){
+							val = initial1;
+						}	
 					}
 				}
 				if(name=='eventPhone'){
@@ -262,7 +274,14 @@ $( document ).ready(function() {
 		        };
 
 		        $.post('/Ajax/EditEvent.php', postData,function(data) {
-		        	var correct = data;
+		        	if(data){
+		        		if(name == 'capacity'){
+		        			$('#capacityInitialValue').val(val);
+		        		}
+		        		if(name == 'price'){
+		        			$('#priceInitialValue').val(val);
+		        		}
+		        	}
 		        },"json");
 			}
 		
@@ -355,22 +374,7 @@ $(':file').change(function(){
 				required : true,
 				digits	: true,
 				minlength : 9
-			}/*,
-			price: {
-				digits	: function(){
-					if($('#limited').click()){
-						return true;
-					}
-
-				}
-			},
-			capacity: {
-				digits	: function(){
-					if($('#cost').click()){
-						return true;
-					}
-				}
-			}*/
+			}
   		}
   });
   </script>

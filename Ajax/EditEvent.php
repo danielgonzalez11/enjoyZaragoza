@@ -29,6 +29,7 @@ switch ($name) {
         $event->name = $value;
         $event->save();
         $correct = true;
+        echo $correct;    
         break;
     case 'date':
         $event = new Event();
@@ -38,6 +39,7 @@ switch ($name) {
             $event->dateFinish = $dateFinish;
             $event->save();
             $correct = true;
+            echo $correct;    
         }
         break;
     case 'category':
@@ -45,7 +47,8 @@ switch ($name) {
         $event->getFromId($id);
         $event->category = $value;
         $event->save();
-        $correct = true;    
+        $correct = true;
+        echo $correct;        
         break;
     case 'description':
         $eventInfo = new EventInfo();
