@@ -2,8 +2,8 @@
 
 {% block head %}
 	{{ parent() }}
-	<link href="{{ qv.css }}/calendar.css" rel="stylesheet">
-	<link href="{{ qv.css }}/custom_1.css" rel="stylesheet">
+	<link href="{{ qv.css }}/calendar.min.css" rel="stylesheet">
+	<link href="{{ qv.css }}/custom_1.min.css" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
@@ -35,7 +35,7 @@
 {% endblock %}
 {% block scripts %}
   {{ parent() }}
-<script src="{{ qv.js }}/jquery.calendario.js"></script>
+<script src="{{ qv.js }}/jquery.calendario.min.js"></script>
 <script>
 $( document ).ready(function() {
 var codropsEvents = JSON.parse('{{ eventos | e('js') }}');

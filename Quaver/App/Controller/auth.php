@@ -77,7 +77,6 @@ class auth extends Controller
             header("Location: $goTo");
             exit;
         }
-
         $this->addTwigVars('ref', $goTo);
         $this->render();
     }
@@ -163,8 +162,6 @@ class auth extends Controller
             }            
 
             $this->addTwigVars('error', $_error);
-
-
             // Check errors to continue
             if (!$_error) {
                 echo "todo correcto";

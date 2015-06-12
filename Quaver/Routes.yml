@@ -21,11 +21,11 @@ event:
 
 
 # perfil de usuario, no conectado
-user:
-    url: /user/([a-zA-Z0-9-_]+)?[/]?([a-zA-Z0-9-_]+)?[/]?
-    controller: users
-    action: user
-    view: profile/user
+#user:
+#    url: /user/([a-zA-Z0-9-_]+)?[/]?([a-zA-Z0-9-_]+)?[/]?
+#    controller: users
+#    action: user
+#    view: profile/user
     
 # url no existente o encontrada
 404:
@@ -35,11 +35,11 @@ user:
     view: e404
 
 # mantenimiento!
-maintenance:
-    url: /maintenance/
-    controller: home
-    action: maintenance
-    view: maintenance
+#maintenance:
+#    url: /maintenance/
+#    controller: home
+#    action: maintenance
+#    view: maintenance
 
 # ingles/español
 language:
@@ -53,7 +53,7 @@ register:
     url: /register/
     controller: auth
     action: register
-
+    view: user/login
 
 login:
     url: /login/

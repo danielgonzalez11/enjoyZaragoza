@@ -12,3 +12,9 @@ if ($eventsToFinish) {
         $v->save();
     }
 }
+
+/*
+Código del cron en ubuntu
+crontab -e editar el fichero, poner
+*/
+//    */5 * * * * /usr/bin/php /var/www/enjoyZaragoza/Cron/finishedEvents.php >/dev/null 2>&1

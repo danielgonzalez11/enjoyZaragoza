@@ -28,54 +28,56 @@ class home extends Controller
         $event = new Event();
         $eventos = $event->getList();   
         $events = array();
+        
 
-        for ($i=0; $i < count($eventos); $i++) {
-            if($_user->logged){
-                if($eventos[$i]->status == "completed"){
-                    if(empty($events[(date('m-d-Y', strtotime($eventos[$i]->dateFinish)))])){
-                        $events[(date('m-d-Y', strtotime($eventos[$i]->dateFinish)))] = '<a class="completed" href=/event/'.$eventos[$i]->id.'>'.$eventos[$i]->name.'</a>';
+        if($eventos){
+            for ($i=0; $i < count($eventos); $i++) {
+                if($_user->logged){
+                    if($eventos[$i]->status == "completed"){
+                        if(empty($events[(date('m-d-Y', strtotime($eventos[$i]->dateFinish)))])){
+                            $events[(date('m-d-Y', strtotime($eventos[$i]->dateFinish)))] = '<a class="completed" href=/event/'.$eventos[$i]->id.'>'.$eventos[$i]->name.'</a>';
+                        }else{
+                            $events[(date('m-d-Y', strtotime($eventos[$i]->dateFinish)))] .= '<a class="completed" href=/event/'.$eventos[$i]->id.'>'.$eventos[$i]->name.'</a>';
+                        }
                     }else{
-                        $events[(date('m-d-Y', strtotime($eventos[$i]->dateFinish)))] .= '<a class="completed" href=/event/'.$eventos[$i]->id.'>'.$eventos[$i]->name.'</a>';
+                        $userEvent = new UserEvent();
+                        $userEvent->getFollow($eventos[$i]->id,$_user->id);
+                        if(is_null($userEvent->id)){
+                            //No va a este evento
+                            if(empty($events[(date('m-d-Y', strtotime($eventos[$i]->dateFinish)))])){
+                                $events[(date('m-d-Y', strtotime($eventos[$i]->dateFinish)))] = '<a href=/event/'.$eventos[$i]->id.'>'.$eventos[$i]->name.'</a>';                        
+                            }else{
+                                $events[(date('m-d-Y', strtotime($eventos[$i]->dateFinish)))] .= '<a href=/event/'.$eventos[$i]->id.'>'.$eventos[$i]->name.'</a>';                        
+                            }
+                        }else{
+                            //Va a este evento
+                            if(empty($events[(date('m-d-Y', strtotime($eventos[$i]->dateFinish)))])){
+                                $events[(date('m-d-Y', strtotime($eventos[$i]->dateFinish)))] = '<a class="userGo" href=/event/'.$eventos[$i]->id.'>'.$eventos[$i]->name.'</a>';                        
+                            }else{
+                                $events[(date('m-d-Y', strtotime($eventos[$i]->dateFinish)))] .= '<a class="userGo" href=/event/'.$eventos[$i]->id.'>'.$eventos[$i]->name.'</a>';
+                            }
+
+                        }
                     }
                 }else{
-                    $userEvent = new UserEvent();
-                    $userEvent->getFollow($eventos[$i]->id,$_user->id);
-                    if(is_null($userEvent->id)){
-                        //No va a este evento
+                    if($eventos[$i]->status == "completed"){
+                        if(empty($events[(date('m-d-Y', strtotime($eventos[$i]->dateFinish)))])){
+                            $events[(date('m-d-Y', strtotime($eventos[$i]->dateFinish)))] = '<a class="completed" href=/event/'.$eventos[$i]->id.'>'.$eventos[$i]->name.'</a>';                        
+                        }else{
+                            $events[(date('m-d-Y', strtotime($eventos[$i]->dateFinish)))] .= '<a class="completed" href=/event/'.$eventos[$i]->id.'>'.$eventos[$i]->name.'</a>';                        
+                        }
+                        
+                    }else{
                         if(empty($events[(date('m-d-Y', strtotime($eventos[$i]->dateFinish)))])){
                             $events[(date('m-d-Y', strtotime($eventos[$i]->dateFinish)))] = '<a href=/event/'.$eventos[$i]->id.'>'.$eventos[$i]->name.'</a>';                        
                         }else{
                             $events[(date('m-d-Y', strtotime($eventos[$i]->dateFinish)))] .= '<a href=/event/'.$eventos[$i]->id.'>'.$eventos[$i]->name.'</a>';                        
                         }
-                    }else{
-                        //Va a este evento
-                        if(empty($events[(date('m-d-Y', strtotime($eventos[$i]->dateFinish)))])){
-                            $events[(date('m-d-Y', strtotime($eventos[$i]->dateFinish)))] = '<a class="userGo" href=/event/'.$eventos[$i]->id.'>'.$eventos[$i]->name.'</a>';                        
-                        }else{
-                            $events[(date('m-d-Y', strtotime($eventos[$i]->dateFinish)))] .= '<a class="userGo" href=/event/'.$eventos[$i]->id.'>'.$eventos[$i]->name.'</a>';
-                        }
-
-                    }
+                        
+                    }  
                 }
-            }else{
-                if($eventos[$i]->status == "completed"){
-                    if(empty($events[(date('m-d-Y', strtotime($eventos[$i]->dateFinish)))])){
-                        $events[(date('m-d-Y', strtotime($eventos[$i]->dateFinish)))] = '<a class="completed" href=/event/'.$eventos[$i]->id.'>'.$eventos[$i]->name.'</a>';                        
-                    }else{
-                        $events[(date('m-d-Y', strtotime($eventos[$i]->dateFinish)))] .= '<a class="completed" href=/event/'.$eventos[$i]->id.'>'.$eventos[$i]->name.'</a>';                        
-                    }
-                    
-                }else{
-                    if(empty($events[(date('m-d-Y', strtotime($eventos[$i]->dateFinish)))])){
-                        $events[(date('m-d-Y', strtotime($eventos[$i]->dateFinish)))] = '<a href=/event/'.$eventos[$i]->id.'>'.$eventos[$i]->name.'</a>';                        
-                    }else{
-                        $events[(date('m-d-Y', strtotime($eventos[$i]->dateFinish)))] .= '<a href=/event/'.$eventos[$i]->id.'>'.$eventos[$i]->name.'</a>';                        
-                    }
-                    
-                }  
             }
         }
-        //dd($events);
         $this->addTwigVars('eventos',json_encode($events));
         $this->addTwigVars('siteTitle', "Welcome to Enjoyzaragoza" . ' - ' . BRAND_NAME);
         $this->render();

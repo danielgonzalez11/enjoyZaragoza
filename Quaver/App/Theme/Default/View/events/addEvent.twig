@@ -4,7 +4,7 @@
 	{{ parent() }}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <link rel="stylesheet" href="{{qv.css}}/bootstrap-datetimepicker.min.css" />	
-<script type="text/javascript" src="{{ qv.js }}/moment-with-locales.js"></script>	
+<script type="text/javascript" src="{{ qv.js }}/moment-with-locales.min.js"></script>	
 <script type="text/javascript" src="{{ qv.js }}/bootstrap-datetimepicker.min.js"></script>
 
 	
@@ -159,7 +159,7 @@
   <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/localization/messages_{{ language.locale[:2] }}.min.js"></script>
 {% endif %}
 <script src="{{ qv.js }}/cookie-{{ langCurrent[0] }}.js"></script>	
-<script src="{{ qv.js }}/jquery.filepicker.js"></script>
+<script src="{{ qv.js }}/jquery.filepicker.min.js"></script>
 <script>
 	$(function () {
 		$("input[type='file']").filepicker({

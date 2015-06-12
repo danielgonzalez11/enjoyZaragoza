@@ -1,3 +1,8 @@
+Para este proyecto he utilizado el framework de la empresa Millolab llamado Quaver, el cual esta en vías de desarrollo dando muy buenos resultados, dejo a continuación el readme del repositorio de Quaver para mas información.
+
+
+
+
 What is Quaver?
 ===============
 It is a framework designed to develop a website, applications, platforms or whatever you want. Lightweight and simple to use, modular and robust. Made for Web Artisans.
