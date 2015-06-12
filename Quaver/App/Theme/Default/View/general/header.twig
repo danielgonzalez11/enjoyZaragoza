@@ -1,0 +1,48 @@
+  <header>
+   <div class="container">
+    <div class="row">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/"><img src="http://lorempixel.com/180/60/" class="logo" alt="Enjoy Zaragoza"></a>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              {% if not _user.logged %}
+                <li class="header-li"><a href="#modal-login" class="btn-header btn btn-orange fix-button-header" data-toggle="modal" data-target="#modal-login">{{ ('header-create-event')|t }}</a></li>
+              {% endif %}
+              {% if _user.logged %}
+              <li class="header-li"><a href="/add-event/" class="btn-header btn btn-orange fix-button-header">{{ ('header-create-event')|t }}</a></li>
+              {% endif %}
+              <li class="header-li"><a href="/" class="btn-header btn btn-orange fix-button-header">{{ ('how-it-works')|t }}</a></li>
+              {% if not _user.logged %}
+                  <li><a href="#modal-login" class="btn-header btn btn-brown fix-button-header fix-second-button-header" data-toggle="modal" data-target="#modal-login">{{ ('header-my-account')|t }}</a></li>
+              {% endif %}
+              {% if _user.logged %}
+                  <li class="dropdown-userlogged">{% include 'general/header-logged.twig' %}</li>
+              {% endif %}
+
+            </ul>
+          </div><!-- /.navbar-collapse -->
+
+          <div class="language-selector navbar-right btn-group">
+            {% for lang in languages %}
+              <a class="btn btn-orange btn-lang" href="/language/{{ lang.slug }}" {% if lang.id == language.id %}disabled{% endif %}>{{ lang.name[:2] }}</a>
+            {% endfor %}
+          </div>
+        </div><!-- /.container-fluid -->
+        <div class="home-sep visible-xs-block"></div>
+      </nav>
+    </div>
+  </div> 
+</header>
+<div class="home-sep"></div>

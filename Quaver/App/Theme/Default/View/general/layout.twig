@@ -1,0 +1,50 @@
+{% set langCurrent = language.locale|split('_') %}
+<!DOCTYPE html>
+<html lang="{{ langCurrent[0] }}">
+<head>
+{# block head #}
+{% block head %}
+{% include 'general/head.twig' %}
+{% endblock %}
+{# / block head #}
+</head>
+<body>
+{# header nav #}
+{% block header %}
+{% include 'general/header.twig' %}
+{% endblock %} 
+{# / header nav #}
+<div id="body-wrap">
+ {% block body %}{% endblock %}
+</div>
+
+{#footer#}
+{% block footer %}
+{% include 'general/footer.twig' %}
+{% if not _user.logged %}
+    {% include 'user/modal-login.twig' %}
+{% endif %}    
+{% endblock %}
+{#/footer#}
+
+{# scripts #}
+{% block scripts %}
+{% include 'general/scripts.twig' %}
+{% if not _user.logged %}
+<script>
+//<![CDATA[
+  $('#modal-login')
+    .on('show.bs.modal', function (e) {
+      var modal = $(this);
+      if (!modal.data('validating')) {
+        modal.find('.login-form').validate();
+        modal.find('.register-form').validate();
+      }
+    });
+  
+//]]>
+</script>
+{% endif %}
+{% endblock %}    
+</body>
+</html>

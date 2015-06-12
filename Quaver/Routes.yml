@@ -3,22 +3,29 @@ home:
     url: /
     controller: home
     action: home
-    view: home
+    view: home/home
+
+
+addEvent:
+    url: /add-event/
+    controller: addEvent
+    action: addEvent
+    view:  events/addEvent
 
 # perfil de evento, sin conectarse
 event:
-    url: /event/([a-zA-Z0-9-_]+)?[/]?([a-zA-Z0-9-_]+)?[/]?
-    controller: event
+    url: /event/([a-zA-Z0-9-_]+)?[/]
+    controller: events
     action: event
-    view: profile/event
+    view: events/event
 
 
 # perfil de usuario, no conectado
-user:
-    url: /user/([a-zA-Z0-9-_]+)?[/]?([a-zA-Z0-9-_]+)?[/]?
-    controller: users
-    action: user
-    view: profile/user
+#user:
+#    url: /user/([a-zA-Z0-9-_]+)?[/]?([a-zA-Z0-9-_]+)?[/]?
+#    controller: users
+#    action: user
+#    view: profile/user
     
 # url no existente o encontrada
 404:
@@ -28,16 +35,16 @@ user:
     view: e404
 
 # mantenimiento!
-maintenance:
-    url: /maintenance/
-    controller: home
-    action: maintenance
-    view: maintenance
+#maintenance:
+#    url: /maintenance/
+#    controller: home
+#    action: maintenance
+#    view: maintenance
 
 # ingles/español
 language:
-    url: /language/
-    controller: language
+    url: /language/([a-zA-Z0-9-_]+)?[/]?
+    controller: home
     action: language
     view: none
 
@@ -46,13 +53,13 @@ register:
     url: /register/
     controller: auth
     action: register
-    view: register
+    view: user/login
 
 login:
     url: /login/
     controller: auth
     action: login
-    view: login
+    view: user/login
 
 logout:
     url: /logout/
@@ -79,3 +86,8 @@ admin_users:
     controller: dashboard
     action: users
 
+admin_events:
+    url: /admin/events/([a-zA-Z0-9-_]+)?[/]?([a-zA-Z0-9-_]+)?[/]?
+    path: admin
+    controller: dashboard
+    action: events

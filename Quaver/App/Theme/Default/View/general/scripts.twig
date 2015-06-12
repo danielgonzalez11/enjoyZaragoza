@@ -1,0 +1,18 @@
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="{{ qv.js }}/bootstrap.min.js"></script>
+<script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+{% if language.locale[:2] != 'en' %}
+  <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/localization/messages_{{ language.locale[:2] }}.min.js"></script>
+{% endif %}
+<script src="{{ qv.js }}/cookie-{{ langCurrent[0] }}.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
+<script>
+		window.currencySymbol = "{{ qv.currencySymbol }}";
+  		window.locale = "{{ language.locale }}";
+</script>

@@ -77,7 +77,6 @@ class auth extends Controller
             header("Location: $goTo");
             exit;
         }
-
         $this->addTwigVars('ref', $goTo);
         $this->render();
     }
@@ -98,19 +97,7 @@ class auth extends Controller
             $_user->unsetCookie();  
         }
 
-        // REF
-        $goTo = '/';
-        if (!empty($_REQUEST['ref'])) {
-            $goTo = $_REQUEST['ref'];
-        } else if (!empty($_SERVER['HTTP_REFERER'])) {
-            $goTo = $_SERVER['HTTP_REFERER'];
-        }
-
-        //Sanatize the url (CR LF Header location Attacks and external urls)
-        $goTo = parse_url($goTo, PHP_URL_PATH);
-        $goTo = $goTo? $goTo : '/';
-
-        header("Location: $goTo");
+        header("Location: /");
         exit;
     }
 
@@ -140,14 +127,15 @@ class auth extends Controller
         $goTo = $goTo? $goTo : '/';
 
         //Register action
-        if (isset($_POST['email']) && isset($_POST['password'])
-            && !empty($_POST['email']) && !empty($_POST['password'])) {
+        if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['name'])
+        && !empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['name'])) {
 
             $user = new User;
             $_error = false;
 
             $_email = trim($_POST['email']);
             $_pass = $_POST['password'];
+            $_name = trim($_POST['name']);
 
 
             if (empty($_email) || !filter_var($_email, FILTER_VALIDATE_EMAIL)) {
@@ -167,15 +155,20 @@ class auth extends Controller
                 $this->addTwigVars('message_error', $message_error);
             }
 
+            if (empty($_name)) {
+                $_error = true;
+                $message_error = $_lang->l('error-name');
+                $this->addTwigVars('message_error', $message_error);
+            }            
+
             $this->addTwigVars('error', $_error);
-
-
             // Check errors to continue
             if (!$_error) {
                 echo "todo correcto";
                 $user->active = 1;
                 $user->password = $user->hashPassword($_POST['password']);
                 $user->email = $_POST['email'];
+                $user->name = $_POST['name'];
 
                 if (isset($_POST['admin'])) {
                     $user->level = "admin";

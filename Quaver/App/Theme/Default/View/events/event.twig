@@ -1,0 +1,383 @@
+{% extends "general/layout.twig" %}
+
+{% block head %}
+	{{ parent() }}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<link rel="stylesheet" href="{{ qv.css }}/bootstrap-datetimepicker.min.css" />
+<script type="text/javascript" src="{{ qv.js }}/moment-with-locales.min.js"></script>		
+<script type="text/javascript" src="{{ qv.js }}/bootstrap-datetimepicker.min.js"></script>
+{% endblock %}
+
+{% block body %}
+<div class="event-header">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+				{% if adminOrCreator %}
+				<form id="image-form" method="post" enctype="multipart/form-data">
+				  <div class="form-group">	
+					<img id="imgAjax" src="{{ path }}" class="img-responsive"></img>
+			        <a href="#" class="text-normal btn btn-link btn-edit btn-file ">
+			          <span class="btn-label" >Editar</span>
+			          <input type="file" name="image" id="image" class="form-control">
+			        </a>					
+				  </div>	
+				</form>
+				{% else %}
+				<img src="{{ path }}" class="img-responsive"></img>
+				{% endif %}
+			</div>
+			<div class="col-md-8">
+				{% if adminOrCreator %}
+				<form id="event-form" method="post">
+					<input type="hidden" value="{{ event.id }}" name="eventId" id="eventId">
+					<div class="form-group">
+			          <label for="eventName" class="pull-left">
+			            <span class="label-text">Evento:</span>
+			          </label>
+			          <label for="eventName" class="pull-right"><span class="btn btn-link btn-edit">Editar</span></label>
+			          <div class="form-control-wrap">
+			            <input type="text" id="eventName" name="eventName" value="{{ event.name }}" placeholder="escribe el nombre del evento" class="form-control form-control-inline">
+			          </div>
+			        </div>
+					<div class="form-group">
+			          <label for="date" class="pull-left">
+			            <span class="label-text">Fecha y Hora:</span>
+			          </label>
+			          <label for="date" class="pull-right"><span class="btn btn-link btn-edit">Editar</span></label>
+			          <div class="form-control-wrap">
+			           <div class='input-group date' id='datetimepicker'>
+				            <span class="input-group-addon"><span id="dateIcon" class="glyphicon glyphicon-calendar"></span></span>
+			                <input type='text' id="date" name="date" value="{{ event.dateFinish|date('m/d/Y h:i') }}" class="form-control form-control-inline"/>
+		            	</div>
+			          </div>
+			        </div>
+				
+			        <script>
+						    $(function () {
+						        $('#datetimepicker').datetimepicker({
+						                	//language: 'es'
+						        });
+						    });
+					</script>
+					<div class="form-group">
+			          <label for="category" class="pull-left">
+			            <span class="label-text">Categoría:</span>
+			          </label>
+			          <label for="category" class="pull-right"><span class="btn btn-link btn-edit">Editar</span></label>
+			          <div class="form-control-wrap">
+				        <select class="form-control form-control-inline" name="category" id="category" >
+				        {% for c in category %}
+				        	<option value="{{ c.category  }}" {% if event.category == c.category %} selected {% endif %}>{{ c.category }}</option>
+				        {% endfor %}
+						</select>
+			          </div>
+			        </div>
+					<div class="form-group">
+			          <label for="description" class="pull-left">
+			            <span class="label-text">Descripción:</span>
+			          </label>
+			          <label for="description" class="pull-right"><span class="btn btn-link btn-edit">Editar</span></label>
+			          <div class="form-control-wrap">
+            			<textarea rows="4" maxlength="255"  id="description" name="description" class="form-control form-control-inline" placeholder="Escribe la descripción del evento aquí...">{{ eventInfo.description }}</textarea>			          		
+			          </div>
+			        </div>
+					<div class="form-group">
+			          <label class="pull-left">
+			            <span class="label-text">Creado por:</span>
+			          </label>
+			          <div class="form-control-wrap">
+ 						{{ userEvent.name }}			          		
+			          </div>
+			        </div>
+					<div class="form-group">
+			          <label for="eventPhone" class="pull-left">
+			            <span class="label-text">Teléfono:</span>
+			          </label>
+			          <label for="eventPhone" class="pull-right"><span class="btn btn-link btn-edit">Editar</span></label>
+			          <div class="form-control-wrap">
+			          	<input type="text" class="form-control form-control-inline" id="eventPhone" value="{{ eventInfo.phone }}" name="eventPhone" minlength="9" maxlength="9" placeholder="teléfono de contacto.....">	
+			          </div>
+			        </div>
+					<div class="form-group">
+			          <label for="capacity" class="pull-left">
+			            <span class="label-text">Aforo:</span>
+			          </label>
+			          <label for="capacity" class="pull-right"><span class="btn btn-link btn-edit">Editar</span></label>
+			          <div class="form-control-wrap">
+			          	<div class="input-group">
+			          	<input type="text" class="form-control form-control-inline" id="capacity" value="{{ eventInfo.capacity }}" name="capacity" placeholder="escribe el aforo del evento.....">
+			          	<div class="input-group-addon"><i class="fa fa-users"></i></div>
+			          	</div>	
+			          </div>
+			          	<div class="radios-capacity">
+							<div class="radio-inline">
+							  <label>
+							    <input type="radio" name="capacityRadio" id="limited" value="limited">
+							    Limitado
+							  </label>
+							</div>
+							<div class="radio-inline">
+							  <label>
+							    <input type="radio" name="capacityRadio" id="unlimited" value="unlimited">
+							    Ilimitado
+							  </label>
+							</div>
+			       	 	</div>
+			       	 	<input type="hidden" value="{{ eventInfo.capacity }}" name="capacityInitialValue" id="capacityInitialValue">				          
+			        </div>
+					<div class="form-group">
+			          <label for="price" class="pull-left">
+			            <span class="label-text">Precio:</span>
+			          </label>
+			          <label for="price" class="pull-right"><span class="btn btn-link btn-edit">Editar</span></label>
+			          <div class="form-control-wrap">
+			          	<div class="input-group">
+			          	<input type="text" class="form-control form-control-inline" id="price" value="{{ eventInfo.price }}" name="price" placeholder="escribe el precio del evento.....">
+			          	<div class="input-group-addon"><i class="fa fa-eur"></i></div>
+			          	</div>	
+			          </div>
+			          <div class="radios-price">
+			          	<div class="radio-inline">
+						  <label>
+						    <input type="radio"  name="priceRadio" id="free" value="free">
+						    Grátis
+						  </label>
+						</div>
+						<div class="radio-inline">
+						  <label>
+						    <input type="radio" name="priceRadio" id="cost" value="cost">
+						    Con aportación
+						  </label>
+						</div>
+			          </div>
+			       	 	<input type="hidden" value="{{ eventInfo.price }}" name="priceInitialValue" id="priceInitialValue">				          
+			        </div>			        			        			          
+					<div class="form-group">
+			          <label for="eventDetails" class="pull-left">
+			            <span class="label-text">Detalles:</span>
+			          </label>
+			          <label for="eventDetails" class="pull-right"><span class="btn btn-link btn-edit">Editar</span></label>
+			          <div class="form-control-wrap">
+			          	<input type="text" class="form-control form-control-inline" id="eventDetails" value="{{ eventInfo.details }}" name="eventDetails" placeholder="Detalles del evento.....">	
+			          </div>
+			        </div>			        
+				</form>				
+				{% else %}
+				<h1>{{ event.name }}</h1>
+				<p><strong>Fecha y Hora:</strong> {{ event.dateFinish }}</p>
+				<p><strong>Categoría:</strong> {{ event.category }}</p>
+				<p><strong>Descripción:</strong> {{ eventInfo.description }}</p>
+				<p><strong>Creado por:</strong> {{ userEvent.name }}</p>
+				<p><strong>Teléfono de contacto:</strong> {{ eventInfo.phone }}</p>
+				<p><strong>Aforo:</strong> {{ eventInfo.capacity }}</p>
+				<p><strong>Precio:</strong> {{ eventInfo.price }}</p>
+				<p><strong>Detalles:</strong> {{ eventInfo.details }}</p>
+				{% endif %}	
+				{% if _user.logged %}
+					{% if go %}
+					<a href="#" id="follow"  class="btn btn-orange-brown form-control">No Asistiré</a>
+					{% else %}
+					<a href="#" id="follow"  class="btn btn-orange-brown form-control">Asistiré</a>
+					{% endif %}
+				{% else %}
+					<a data-toggle="modal" data-target="#modal-login" class="btn btn-orange-brown form-control">Asistiré</a>
+				{% endif %}	
+			</div>
+		</div>
+	</div>	
+</div>
+
+{% endblock %}
+{% block scripts %}
+<script src="{{ qv.js }}/bootstrap.min.js"></script>
+<script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+{% if language.locale[:2] != 'en' %}
+  <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/localization/messages_{{ language.locale[:2] }}.min.js"></script>
+{% endif %}
+<script src="{{ qv.js }}/cookie-{{ langCurrent[0] }}.js"></script>
+<script>
+$( document ).ready(function() {
+	var value;
+	var radios = false;
+	var imagen = true;
+	$(':input.form-control-inline').focusin(function(){
+		var $i = $(this);
+		value = $i.val();
+		var name = $i.prop("name");
+		switch(name) {
+		    case 'capacity':
+		    	$i.removeClass('form-control-inline').addClass('form-control-editing');	
+		        $('.radios-capacity').show();
+		        break;
+		    case 'price':
+		    	$i.removeClass('form-control-inline').addClass('form-control-editing');
+		        $('.radios-price').show();
+		        break;		        
+		    default:
+		        $i.removeClass('form-control-inline').addClass('form-control-editing');
+
+		}
+	}).on( "focusout", function() {
+		var $i = $(this);
+		$i.removeClass('form-control-editing').addClass('form-control-inline');
+		var initial1 = $('#capacityInitialValue').val();
+		var change1 = $('#capacity').val();
+		if(initial1 != change1 ){
+			radios = true;
+		}
+		var initial2 = $('#priceInitialValue').val();
+		var change2 = $('#price').val();		
+		if(initial2 != change2){
+			radios = true;					
+		}
+		
+			if($i.val() != value || radios || imagen){
+				//AJAX
+				var id = $('#eventId').val();
+				var name = $i.attr('name');
+				var val = $i.val();
+
+				var p = $("#cost").prop("checked");
+				if(name =='price'){
+					if($('#price').val() == ''){
+						val = initial2;
+					}else if(p){
+						if(!$.isNumeric($('#price').val())){
+							val = initial2;
+						}	
+					}
+				}
+
+				var c = $("#limited").prop("checked");
+				if(name =='capacity'){
+					if($('#capacity').val() == ''){
+						val = initial1;
+					}else if(c){
+						if(!$.isNumeric($('#capacity').val())){
+							val = initial1;
+						}	
+					}
+				}
+				if(name=='eventPhone'){
+					if(!$.isNumeric(val)){
+						val = value;
+					}
+				}
+				if(val == ""){
+					val = value;
+				}
+				postData = {
+		                id: id,
+		                name: name,
+		                value: val
+		        };
+
+		        $.post('/Ajax/EditEvent.php', postData,function(data) {
+		        	if(data){
+		        		if(name == 'capacity'){
+		        			$('#capacityInitialValue').val(val);
+		        		}
+		        		if(name == 'price'){
+		        			$('#priceInitialValue').val(val);
+		        		}
+		        	}
+		        },"json");
+			}
+		
+
+	});
+});
+</script>
+<script>
+$(':file').change(function(){
+	var data = new FormData();
+	var id = $('#eventId').val();
+	jQuery.each(jQuery('#image')[0].files, function(i, file) {
+	    data.append('image', file);
+	    data.append('name','image');
+		data.append('id',id);
+	});
+
+
+	jQuery.ajax({
+	    url: '/Ajax/EditEvent.php',
+	    data: data,
+	    cache: false,
+	    contentType: false,
+	    processData: false,
+	    type: 'POST',
+	    success: function(data){
+	    	if(data != true && data != ""){
+	    		d = new Date();
+	    		$('#imgAjax').removeAttr('src').attr('src','/'+data+'?'+d.getTime());
+	    	}
+
+	    }
+	});
+});
+
+</script>
+<script>
+	$('#dateIcon').click(function(){
+		$('#date').focus();
+	});
+	$('#cost').click(function(){
+		$('#price').focus();
+		$('#price').val('');
+	});
+	$('#limited').click(function(){
+		$('#capacity').focus();
+		$('#capacity').val('');
+	});
+	$('#free').click(function(){	
+		$('#price').val('free');
+		$('#price').focus();
+	});
+	$('#unlimited').on("click",function(){		
+		$('#capacity').val('unlimited');
+		$('#capacity').focus();
+	});			
+
+</script>
+  <script>
+   $('#follow').on('click', function (e) {
+    e.preventDefault();
+    var $btn = $(this);
+    $btn.addClass("disabled");
+    $btn.text("Guardando");
+    //Llamada ajax here
+    var id = {{ event.id }};
+    var user = {{ _user.id }};
+        postData = {
+                id: id,
+                user: user
+        };
+        $.post('/Ajax/userEvent.php', postData,function(data) {
+            if(data){
+                  $btn.removeClass("disabled");
+                  $btn.text("No Asistiré");
+                  $btn.css('opacity','1');
+
+            }else{
+                  $btn.removeClass("disabled");
+                  $btn.text("Asistiré");
+                  $btn.css('opacity','1');
+            }
+        },"json");
+  });
+  </script>
+  <script>
+  $('#event-form').validate({
+  		rules: {
+  			eventPhone: {
+				required : true,
+				digits	: true,
+				minlength : 9
+			}
+  		}
+  });
+  </script>
+{% endblock %}
+
+
